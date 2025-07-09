@@ -9,6 +9,7 @@
     "@types/react-dom": "^19.1.6",
     "bootstrap": "^5.3.7",
     "bootstrap-icons": "^1.13.1",
+    "d3": "^7.9.0",
     "gatsby": "^5.14.1",
     "gatsby-plugin-image": "^3.14.0",
     "gatsby-plugin-manifest": "^5.14.0",

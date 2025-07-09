@@ -59,7 +59,7 @@ const Header: React.FC = () => {
                             </a>
                         </li>
                         <li className="mb-2">
-                            <a href="/manager" className="text-light text-decoration-none d-flex align-items-center">
+                            <a href="/time-manager" className="text-light text-decoration-none d-flex align-items-center">
                                 <i className="bi bi-alarm me-2" /> タイムマネージャー
                             </a>
                         </li>
