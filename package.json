@@ -1,0 +1,45 @@
+{
+  "name": "devkitbase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "electron/main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run gatsby:dev\" \"npm run electron:dev\"",
+    "gatsby:dev": "cd gatsby && gatsby develop -p 8001",
+    "electron:dev": "wait-on http://localhost:8001 && electron -r ts-node/register ./electron/main.ts",
+    "build": "cd gatsby && gatsby build && cp -r public ../dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "electron": "^29.4.6",
+    "electron-builder": "^24.6.0",
+    "wait-on": "^8.0.3"
+  },
+  "build": {
+    "appId": "com.devkitbase.app",
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "extraResources": [],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
+  "dependencies": {
+    "http-proxy-agent": "^5.0.0"
+  }
+}
