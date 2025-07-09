@@ -1,7 +1,7 @@
 // gatsby/src/pages/index.tsx
 
 import * as React from "react"
-import Layout from "../components/Common/layout"
+import Layout from "../components/Common/Layout"
 
 const IndexPage: React.FC = () => {
     return (
