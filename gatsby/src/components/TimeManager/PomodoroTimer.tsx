@@ -58,7 +58,6 @@ const PomodoroTimer: React.FC = () => {
                 if (next <= 0) {
                     clearInterval(intervalRef.current!);
                     setIsRunning(false);
-                    new Audio("alarm.wav").play();
                     notifyUser(notifyLabelRef.current);
                     if (notifyLabelRef.current === "Pomodoro 完了") {
                         setCompletedSessions((c) => Math.min(c + 1, 12));
