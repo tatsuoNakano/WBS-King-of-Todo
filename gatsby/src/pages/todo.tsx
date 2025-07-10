@@ -1,45 +1,50 @@
+// pages/todo.tsx
 import React, { useEffect, useState } from "react";
 import TodoListWithMarkdownExport from "../components/Todo/TodoList";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import Layout from "../components/Common/Layout";
 
-const CATEGORY_STORAGE_KEY = "todo-categories";
+const CATEGORY_NAME_KEY = "todo-category-names"; // 表示名用
 
 const TodoPage: React.FC = () => {
-    const [categories, setCategories] = useState<string[]>([]);
+    const [categoryNames, setCategoryNames] = useState<string[]>(["", "", "", ""]);
 
-    // 初回ロード：localStorageからカテゴリを読み込む
     useEffect(() => {
-        const stored = localStorage.getItem(CATEGORY_STORAGE_KEY);
+        const stored = localStorage.getItem(CATEGORY_NAME_KEY);
         if (stored) {
-            setCategories(JSON.parse(stored));
-        } else {
-            setCategories(["", "", "", ""]); // 空の初期カテゴリ（プレースホルダー表示用）
+            try {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed) && parsed.length === 4) {
+                    setCategoryNames(parsed);
+                }
+            } catch (e) {
+                console.error("カテゴリ名の読み込み失敗:", e);
+            }
         }
     }, []);
 
-    // カテゴリ名の変更 → state更新 + 保存
-    const handleCategoryChange = (index: number, newName: string) => {
-        const updated = [...categories];
+    const handleCategoryNameChange = (index: number, newName: string) => {
+        const updated = [...categoryNames];
         updated[index] = newName;
-        setCategories(updated);
-        localStorage.setItem(CATEGORY_STORAGE_KEY, JSON.stringify(updated));
+        setCategoryNames(updated);
+        localStorage.setItem(CATEGORY_NAME_KEY, JSON.stringify(updated));
     };
 
     return (
         <Layout>
             <Container fluid className="bg-black text-light min-vh-100 p-4">
                 <Row>
-                    {categories.map((key, i) => (
-                        <Col key={i} md={3} className="mb-4">
+                    {[0, 1, 2, 3].map((index) => (
+                        <Col key={index} md={3} className="mb-4">
                             <Form.Control
                                 type="text"
-                                placeholder={`${i + 1}`}
-                                value={key}
-                                onChange={(e) => handleCategoryChange(i, e.target.value)}
+                                placeholder={`カテゴリ ${index + 1}`}
+                                value={categoryNames[index]}
+                                onChange={(e) => handleCategoryNameChange(index, e.target.value)}
                                 className="text-center mb-2 bg-dark text-info border-info"
                             />
-                            <TodoListWithMarkdownExport storageKey={`todo-${key || i + 1}`} />
+                            {/* storageKeyは不変にすることで内容が消えないようにする */}
+                            <TodoListWithMarkdownExport storageKey={`todo-${index + 1}`} />
                         </Col>
                     ))}
                 </Row>
