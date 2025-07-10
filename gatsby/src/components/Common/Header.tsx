@@ -73,6 +73,21 @@ const Header: React.FC = () => {
                                 <i className="bi bi-diagram-3 me-2" /> マインドマップ
                             </a>
                         </li>
+                        <li className="mb-2">
+                            <a href="/mermaid" className="text-light text-decoration-none d-flex align-items-center">
+                                <i className="bi bi-diagram-2 me-2" /> Mermaid
+                            </a>
+                        </li>
+                        <li className="mb-2">
+                            <a href="/plant-uml" className="text-light text-decoration-none d-flex align-items-center">
+                                <i className="bi bi-diagram-3-fill me-2" />PlantUML
+                            </a>
+                        </li>
+                        <li className="mb-2">
+                            <a href="/dice" className="text-light text-decoration-none d-flex align-items-center">
+                                <i className="bi bi-dice-6 me-2" /> ダイスロール
+                            </a>
+                        </li>
                     </ul>
                 </Offcanvas.Body>
             </Offcanvas>
@@ -81,3 +96,4 @@ const Header: React.FC = () => {
 }
 
 export default Header
+

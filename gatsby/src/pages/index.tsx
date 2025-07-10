@@ -8,6 +8,9 @@ const navItems = [
     { href: "/time-manager", icon: "bi-alarm", label: "タイムマネージャー" },
     { href: "/memo", icon: "bi-pencil-square", label: "メモ" },
     { href: "/mindmap", icon: "bi-diagram-3", label: "マインドマップ" },
+    { href: "/mermaid", icon: "bi-diagram-2", label: "Mermaid" },
+    { href: "/plant-uml", icon: "bi-diagram-3-fill", label: "PlantUML" },
+    { href: "/dice", icon: "bi-dice-6", label: "ダイスロール" },
 ];
 
 const IndexPage: React.FC = () => {
