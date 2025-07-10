@@ -26,6 +26,7 @@
     "react-bootstrap": "^2.10.10",
     "react-dom": "^18.2.0",
     "react-json-pretty": "^2.2.0",
+    "replace-in-file": "^8.3.0",
     "sortablejs": "^1.15.6",
     "typescript": "^5.8.3"
   },
@@ -39,7 +40,9 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build",
+    "gatsby:build": "cd gatsby && gatsby build --prefix-paths",
+    "postbuild:fix-paths": "node scripts/fix-paths.js",
+    "build": "npm run gatsby:build && npm run postbuild:fix-paths && node copy-dist.js",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
     "start": "gatsby develop",
