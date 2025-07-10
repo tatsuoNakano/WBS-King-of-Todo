@@ -20,9 +20,11 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^18.2.0",
+    "sortablejs": "^1.15.6",
     "typescript": "^5.8.3"
   },
   "devDependencies": {
+    "@types/sortablejs": "^1.15.8",
     "prettier": "^2.8.8"
   },
   "keywords": [

@@ -1,11 +1,12 @@
 // /src/pages/memo.tsx
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import Layout from "../components/Common/Layout"
 import MemoTextInput, { MemoTextInputHandle } from "../components/Memo/MemoTextInput"
 import MemoFooter from "../components/Memo/MemoFooter"
 
 const MemoPage: React.FC = () => {
     const inputRef = useRef<MemoTextInputHandle>(null)
+    const [title, setTitle] = useState("memo") // 初期タイトル
 
     const handleInsert = (text: string) => {
         inputRef.current?.insertAtCursor(text)
@@ -17,13 +18,16 @@ const MemoPage: React.FC = () => {
         const url = URL.createObjectURL(blob)
         const a = document.createElement("a")
         a.href = url
-        a.download = "memo.md"
+        a.download = `${title || "memo"}.md`
         a.click()
         URL.revokeObjectURL(url)
     }
 
     const handleTitleInput = () => {
-        handleInsert(`# タイトル\n\n`)
+        const newTitle = window.prompt("ファイルのタイトルを入力してください", title)
+        if (newTitle !== null && newTitle.trim() !== "") {
+            setTitle(newTitle.trim())
+        }
     }
 
     const handleClear = () => {

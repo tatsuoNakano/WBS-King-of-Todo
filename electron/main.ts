@@ -1,22 +1,19 @@
-const { app, BrowserWindow } = require("electron")
-const path = require("path")
-
-const isDev = !app.isPackaged
+const { app, BrowserWindow } = require('electron')
+require('@electron/remote/main').initialize()
 
 function createWindow() {
     const win = new BrowserWindow({
-        width: 1200,
-        height: 800,
+        width: 800,
+        height: 600,
         webPreferences: {
+            preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
-        },
+            enableRemoteModule: true, // 必須
+            nodeIntegration: false,
+        }
     })
 
-    if (isDev) {
-        win.loadURL("http://localhost:8001")
-    } else {
-        win.loadFile(path.join(__dirname, "../dist/index.html"))
-    }
-}
+    require('@electron/remote/main').enable(win.webContents)
 
-app.whenReady().then(createWindow)
+    win.loadURL(/* your URL */)
+}
