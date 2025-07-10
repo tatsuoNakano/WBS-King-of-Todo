@@ -74,8 +74,8 @@ const Header: React.FC = () => {
                             </a>
                         </li>
                         <li className="mb-2">
-                            <a href="/mermaid" className="text-light text-decoration-none d-flex align-items-center">
-                                <i className="bi bi-diagram-2 me-2" /> Mermaid
+                            <a href="/i18n" className="text-light text-decoration-none d-flex align-items-center">
+                                <i className="bi bi-globe me-2" /> i18nJson
                             </a>
                         </li>
                         <li className="mb-2">
