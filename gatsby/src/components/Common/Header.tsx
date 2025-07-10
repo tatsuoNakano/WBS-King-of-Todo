@@ -69,7 +69,7 @@ const Header: React.FC = () => {
                             </a>
                         </li>
                         <li className="mb-2">
-                            <a href="/mindmap" className="text-light text-decoration-none d-flex align-items-center">
+                            <a href="/maindmap" className="text-light text-decoration-none d-flex align-items-center">
                                 <i className="bi bi-diagram-3 me-2" /> マインドマップ
                             </a>
                         </li>
