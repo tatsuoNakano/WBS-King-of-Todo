@@ -4,7 +4,7 @@ import Layout from "../components/Common/Layout";
 const navItems = [
     { href: "/gantt", icon: "bi-calendar3", label: "ガントチャート" },
     { href: "/todo-index", icon: "bi-check2-square", label: "ToDo" },
-    { href: "/todo-time", icon: "bi-folder", label: "ディレクトリ構成図" },
+    { href: "/dir", icon: "bi-folder", label: "ディレクトリ構成図" },
     { href: "/time-manager", icon: "bi-alarm", label: "タイムマネージャー" },
     { href: "/memo", icon: "bi-pencil-square", label: "メモ" },
     { href: "/maindmap", icon: "bi-diagram-3", label: "マインドマップ" },
