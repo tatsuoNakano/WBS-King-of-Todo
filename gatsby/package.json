@@ -24,6 +24,7 @@
     "react": "^18.2.0",
     "react-ace": "^14.0.1",
     "react-bootstrap": "^2.10.10",
+    "react-bootstrap-icons": "^1.11.6",
     "react-dom": "^18.2.0",
     "react-json-pretty": "^2.2.0",
     "replace-in-file": "^8.3.0",
