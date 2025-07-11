@@ -43,17 +43,32 @@ const I18nEditor: React.FC = () => {
     const handleInsertStructure = () => {
         try {
             const source = JSON.parse(leftValue);
-            const result: Record<string, string> = {};
-            Object.keys(source).forEach((key) => {
-                result[key] = "";
-            });
-            const formatted = JSON.stringify(result, null, 2);
+
+            const transformStructure = (value: any): any => {
+                if (typeof value === "string") {
+                    return "";
+                } else if (Array.isArray(value)) {
+                    return value.map(item => transformStructure(item));
+                } else if (typeof value === "object" && value !== null) {
+                    const result: Record<string, any> = {};
+                    for (const key in value) {
+                        result[key] = transformStructure(value[key]);
+                    }
+                    return result;
+                } else {
+                    return value;
+                }
+            };
+
+            const transformed = transformStructure(source);
+            const formatted = JSON.stringify(transformed, null, 2);
             setRightValue(formatted);
             validateJson(formatted, setRightError);
         } catch {
             alert("左側のJSONが不正です");
         }
     };
+
 
     const handleDownload = () => {
         try {
@@ -86,6 +101,29 @@ const I18nEditor: React.FC = () => {
             localStorage.removeItem(LOCAL_STORAGE_RIGHT_KEY);
         }
     };
+
+    const handleExtractValues = () => {
+        try {
+            const source = JSON.parse(leftValue);
+
+            const extractValues = (obj: any): string[] => {
+                if (typeof obj === "string") return [obj];
+                if (Array.isArray(obj)) return obj.flatMap(extractValues);
+                if (typeof obj === "object" && obj !== null) {
+                    return Object.values(obj).flatMap(extractValues);
+                }
+                return [];
+            };
+
+            const values = extractValues(source);
+            const formatted = values.join("\n");
+            navigator.clipboard.writeText(formatted);
+            alert("値のみをコピーしました（クリップボード）");
+        } catch {
+            alert("左側のJSONが不正です");
+        }
+    };
+
 
     return (
         <Layout>
@@ -154,7 +192,9 @@ const I18nEditor: React.FC = () => {
                 onDownload={handleDownload}
                 onEditExtension={handleEditExtension}
                 onReset={handleReset}
+                onExtractValues={handleExtractValues} // ✅ 追加
             />
+
         </Layout>
     );
 };

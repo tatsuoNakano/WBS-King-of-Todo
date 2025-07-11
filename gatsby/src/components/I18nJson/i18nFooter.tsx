@@ -1,4 +1,3 @@
-// /src/components/I18nJson/I18nFooter.tsx
 import React from "react";
 import { Button, Container } from "react-bootstrap";
 
@@ -7,9 +6,16 @@ type Props = {
     onDownload: () => void;
     onEditExtension: () => void;
     onReset: () => void;
+    onExtractValues: () => void; // 🔥 新しく追加
 };
 
-const I18nFooter: React.FC<Props> = ({ onInsert, onDownload, onEditExtension, onReset }) => {
+const I18nFooter: React.FC<Props> = ({
+                                         onInsert,
+                                         onDownload,
+                                         onEditExtension,
+                                         onReset,
+                                         onExtractValues, // 🔥 受け取り
+                                     }) => {
     return (
         <div
             className="w-100 bg-dark text-light d-flex align-items-center"
@@ -26,6 +32,9 @@ const I18nFooter: React.FC<Props> = ({ onInsert, onDownload, onEditExtension, on
             <Container className="d-flex justify-content-center align-items-center flex-wrap gap-2">
                 <Button variant="outline-light" onClick={() => onInsert("structure")}>
                     構造をコピー
+                </Button>
+                <Button variant="outline-light" onClick={onExtractValues}>
+                    値を抽出
                 </Button>
                 <Button variant="outline-light" onClick={onDownload}>
                     JSONをダウンロード

@@ -1,17 +1,29 @@
 import React, { useState } from "react"
 import { Button, Offcanvas } from "react-bootstrap"
 
+const navItems = [
+    { href: "/", icon: "bi-house-door", label: "ホーム" },
+    { href: "/gantt", icon: "bi-calendar3", label: "ガントチャート" },
+    { href: "/todo-index", icon: "bi-check2-square", label: "ToDo" },
+    { href: "/dir", icon: "bi-folder", label: "ディレクトリ構成図" },
+    { href: "/time-manager", icon: "bi-alarm", label: "タイムマネージャー" },
+    { href: "/memo", icon: "bi-pencil-square", label: "メモ" },
+    { href: "/maindmap", icon: "bi-diagram-3", label: "マインドマップ" },
+    { href: "/i18n", icon: "bi-globe", label: "i18nJson" },
+    { href: "/plant-uml", icon: "bi-diagram-3-fill", label: "PlantUML" },
+    { href: "/dice", icon: "bi-dice-6", label: "ダイスロール" },
+]
+
 const Header: React.FC = () => {
     const [show, setShow] = useState(false)
-
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
 
     return (
         <>
-            {/* ヘッダー全体 */}
+            {/* ヘッダー */}
             <div
-                className="w-100 bg-dark text-light d-flex align-items-center p-3"
+                className="w-100 bg-dark text-light d-flex align-items-center justify-content-between px-3 p-3"
                 style={{
                     position: "fixed",
                     top: 0,
@@ -20,13 +32,30 @@ const Header: React.FC = () => {
                     boxShadow: "0 2px 4px rgba(0,0,0,0.4)"
                 }}
             >
-                <Button variant="outline-light" onClick={handleShow}>
-                    <i className="bi bi-list" />
-                </Button>
-                <h1 className="ms-3 mb-0 fs-4">DevKitBase</h1>
+                {/* 左：メニュー＋タイトル */}
+                <div className="d-flex align-items-center">
+                    <Button variant="outline-light" onClick={handleShow}>
+                        <i className="bi bi-list" />
+                    </Button>
+                    <h1 className="ms-3 mb-0 fs-4">DevKitBase</h1>
+                </div>
+
+                {/* 右：アイコンだけのリンク一覧 */}
+                <div className="d-flex align-items-center gap-3">
+                    {navItems.map(item => (
+                        <a
+                            key={item.href}
+                            href={item.href}
+                            className="text-light text-decoration-none fs-5"
+                            title={item.label}
+                        >
+                            <i className={`bi ${item.icon}`} />
+                        </a>
+                    ))}
+                </div>
             </div>
 
-            {/* サイドメニュー */}
+            {/* オフキャンバス */}
             <Offcanvas
                 show={show}
                 onHide={handleClose}
@@ -38,56 +67,17 @@ const Header: React.FC = () => {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <ul className="list-unstyled fs-5">
-                        <li className="mb-2">
-                            <a href="/" className="text-light text-decoration-none d-flex align-items-center">
-                                <i className="bi bi-house-door me-2" /> ホーム
-                            </a>
-                        </li>
-                        <li className="mb-2">
-                            <a href="/gantt" className="text-light text-decoration-none d-flex align-items-center">
-                                <i className="bi bi-calendar3 me-2" /> ガントチャート
-                            </a>
-                        </li>
-                        <li className="mb-2">
-                            <a href="/todo-index" className="text-light text-decoration-none d-flex align-items-center">
-                                <i className="bi bi-check2-square me-2" /> ToDo
-                            </a>
-                        </li>
-                        <li className="mb-2">
-                            <a href="/todo-time" className="text-light text-decoration-none d-flex align-items-center">
-                                <i className="bi bi-folder me-2" />ディレクトリ構成図
-                            </a>
-                        </li>
-                        <li className="mb-2">
-                            <a href="/time-manager" className="text-light text-decoration-none d-flex align-items-center">
-                                <i className="bi bi-alarm me-2" /> タイムマネージャー
-                            </a>
-                        </li>
-                        <li className="mb-2">
-                            <a href="/memo" className="text-light text-decoration-none d-flex align-items-center">
-                                <i className="bi bi-pencil-square me-2" /> メモ
-                            </a>
-                        </li>
-                        <li className="mb-2">
-                            <a href="/maindmap" className="text-light text-decoration-none d-flex align-items-center">
-                                <i className="bi bi-diagram-3 me-2" /> マインドマップ
-                            </a>
-                        </li>
-                        <li className="mb-2">
-                            <a href="/i18n" className="text-light text-decoration-none d-flex align-items-center">
-                                <i className="bi bi-globe me-2" /> i18nJson
-                            </a>
-                        </li>
-                        <li className="mb-2">
-                            <a href="/plant-uml" className="text-light text-decoration-none d-flex align-items-center">
-                                <i className="bi bi-diagram-3-fill me-2" />PlantUML
-                            </a>
-                        </li>
-                        <li className="mb-2">
-                            <a href="/dice" className="text-light text-decoration-none d-flex align-items-center">
-                                <i className="bi bi-dice-6 me-2" /> ダイスロール
-                            </a>
-                        </li>
+                        {navItems.map(item => (
+                            <li key={item.href} className="mb-2">
+                                <a
+                                    href={item.href}
+                                    className="text-light text-decoration-none d-flex align-items-center"
+                                >
+                                    <i className={`bi ${item.icon} me-2`} />
+                                    {item.label}
+                                </a>
+                            </li>
+                        ))}
                     </ul>
                 </Offcanvas.Body>
             </Offcanvas>
@@ -96,4 +86,3 @@ const Header: React.FC = () => {
 }
 
 export default Header
-

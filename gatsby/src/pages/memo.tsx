@@ -23,12 +23,6 @@ const MemoPage: React.FC = () => {
         URL.revokeObjectURL(url)
     }
 
-    const handleTitleInput = () => {
-        const newTitle = window.prompt("ファイルのタイトルを入力してください", title)
-        if (newTitle !== null && newTitle.trim() !== "") {
-            setTitle(newTitle.trim())
-        }
-    }
 
     const handleClear = () => {
         inputRef.current?.clearText()
@@ -42,7 +36,6 @@ const MemoPage: React.FC = () => {
             <MemoFooter
                 onInsert={handleInsert}
                 onDownload={handleDownload}
-                onTitleInput={handleTitleInput}
                 onClear={handleClear}
             />
         </Layout>
