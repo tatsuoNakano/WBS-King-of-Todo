@@ -9,7 +9,7 @@ interface Todo {
 }
 
 interface Props {
-    storageKey: string // ← カラムごとに識別できるように
+    storageKey: string
 }
 
 const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
@@ -55,7 +55,7 @@ const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
     const addTodo = () => {
         if (!input.trim()) return
         const task: Todo = {
-            id: `${storageKey}-${Date.now()}`, // ← IDにstorageKeyを含めることで衝突防止
+            id: `${storageKey}-${Date.now()}`,
             title: input.trim(),
             completed: false
         }
@@ -78,12 +78,22 @@ const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
         const lines = todos.map(t => `${t.completed ? "- [x]" : "- [ ]"} ${t.title}`)
         const markdown = `# ToDoリスト\n\n${lines.join("\n")}\n`
         try {
-            if (!(window as any).fileAPI?.saveMarkdown) {
-                alert("Markdown保存機能が使用できません（fileAPI未定義）")
-                return
+            const fileAPI = (window as any).fileAPI
+            if (fileAPI?.saveMarkdown) {
+                const filePath = await fileAPI.saveMarkdown(markdown)
+                if (filePath) alert(`保存しました:\n${filePath}`)
+            } else {
+                // Fallback for browser
+                const blob = new Blob([markdown], { type: "text/markdown" })
+                const url = URL.createObjectURL(blob)
+                const a = document.createElement("a")
+                a.href = url
+                a.download = "todo.md"
+                document.body.appendChild(a)
+                a.click()
+                document.body.removeChild(a)
+                URL.revokeObjectURL(url)
             }
-            const filePath = await (window as any).fileAPI.saveMarkdown(markdown)
-            if (filePath) alert(`保存しました:\n${filePath}`)
         } catch (e) {
             console.error("Markdown保存エラー:", e)
             alert("Markdownの保存に失敗しました")
@@ -103,7 +113,7 @@ const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
                 />
                 <button className="btn btn-outline-info" onClick={addTodo}>追加</button>
                 <button className="btn btn-outline-secondary" onClick={exportMarkdown}>
-                    Markdownエクスポート
+                    DL
                 </button>
             </div>
             <ul ref={listRef} className="list-group bg-dark">
@@ -123,8 +133,8 @@ const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
                             <span
                                 className={`ms-2 text-light ${task.completed ? "text-decoration-line-through" : ""}`}
                             >
-      {task.title}
-    </span>
+                                {task.title}
+                            </span>
                         </div>
                         <button
                             className="btn btn-sm btn-outline-danger"
@@ -133,8 +143,6 @@ const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
                             🗑
                         </button>
                     </li>
-
-
                 ))}
             </ul>
         </div>

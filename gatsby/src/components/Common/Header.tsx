@@ -49,13 +49,13 @@ const Header: React.FC = () => {
                             </a>
                         </li>
                         <li className="mb-2">
-                            <a href="/todo" className="text-light text-decoration-none d-flex align-items-center">
+                            <a href="/todo-index" className="text-light text-decoration-none d-flex align-items-center">
                                 <i className="bi bi-check2-square me-2" /> ToDo
                             </a>
                         </li>
                         <li className="mb-2">
                             <a href="/todo-time" className="text-light text-decoration-none d-flex align-items-center">
-                                <i className="bi bi-clock-history me-2" />Time ToDo
+                                <i className="bi bi-folder me-2" />ディレクトリ構成図
                             </a>
                         </li>
                         <li className="mb-2">

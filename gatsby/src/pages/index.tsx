@@ -3,8 +3,8 @@ import Layout from "../components/Common/Layout";
 
 const navItems = [
     { href: "/gantt", icon: "bi-calendar3", label: "ガントチャート" },
-    { href: "/todo", icon: "bi-check2-square", label: "ToDo" },
-    { href: "/todo-time", icon: "bi-clock-history", label: "Time ToDo" },
+    { href: "/todo-index", icon: "bi-check2-square", label: "ToDo" },
+    { href: "/todo-time", icon: "bi-folder", label: "ディレクトリ構成図" },
     { href: "/time-manager", icon: "bi-alarm", label: "タイムマネージャー" },
     { href: "/memo", icon: "bi-pencil-square", label: "メモ" },
     { href: "/maindmap", icon: "bi-diagram-3", label: "マインドマップ" },
@@ -18,7 +18,7 @@ const IndexPage: React.FC = () => {
         <Layout>
         <div className="bg-dark text-light min-vh-100 d-flex justify-content-center align-items-start pt-5">
             <div className="container">
-                <h2 className="text-center mb-4">DevKitBase</h2>
+                <h2 className="text-center mb-4">DevKitBase Tools</h2>
                 <div className="row g-4 justify-content-center">
                     {navItems.map(({ href, icon, label }) => (
                         <div key={href} className="col-6 col-md-4">
