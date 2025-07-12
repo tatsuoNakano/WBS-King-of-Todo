@@ -6,7 +6,8 @@ type Props = {
     onDownload: () => void;
     onEditExtension: () => void;
     onReset: () => void;
-    onExtractValues: () => void; // 🔥 新しく追加
+    onExtractValues: () => void;
+    onCheckStructure: () => void; // ✅ 追加
 };
 
 const I18nFooter: React.FC<Props> = ({
@@ -14,7 +15,8 @@ const I18nFooter: React.FC<Props> = ({
                                          onDownload,
                                          onEditExtension,
                                          onReset,
-                                         onExtractValues, // 🔥 受け取り
+                                         onExtractValues,
+                                         onCheckStructure, // ✅ 追加
                                      }) => {
     return (
         <div
@@ -32,6 +34,9 @@ const I18nFooter: React.FC<Props> = ({
             <Container className="d-flex justify-content-center align-items-center flex-wrap gap-2">
                 <Button variant="outline-light" onClick={() => onInsert("structure")}>
                     構造をコピー
+                </Button>
+                <Button variant="outline-light" onClick={onCheckStructure}>
+                    構造を比較
                 </Button>
                 <Button variant="outline-light" onClick={onExtractValues}>
                     値を抽出

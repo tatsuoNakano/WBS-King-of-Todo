@@ -69,7 +69,6 @@ const I18nEditor: React.FC = () => {
         }
     };
 
-
     const handleDownload = () => {
         try {
             const validated = JSON.parse(rightValue);
@@ -107,7 +106,14 @@ const I18nEditor: React.FC = () => {
             const source = JSON.parse(leftValue);
 
             const extractValues = (obj: any): string[] => {
-                if (typeof obj === "string") return [obj];
+                if (
+                    typeof obj === "string" ||
+                    typeof obj === "number" ||
+                    typeof obj === "boolean" ||
+                    obj === null
+                ) {
+                    return [String(obj)];
+                }
                 if (Array.isArray(obj)) return obj.flatMap(extractValues);
                 if (typeof obj === "object" && obj !== null) {
                     return Object.values(obj).flatMap(extractValues);
@@ -124,6 +130,36 @@ const I18nEditor: React.FC = () => {
         }
     };
 
+    const handleCheckStructureMatch = () => {
+        try {
+            const left = JSON.parse(leftValue);
+            const right = JSON.parse(rightValue);
+
+            const compareStructure = (a: any, b: any): boolean => {
+                if (typeof a !== typeof b) return false;
+
+                if (Array.isArray(a)) {
+                    if (!Array.isArray(b)) return false;
+                    if (a.length === 0 || b.length === 0) return true;
+                    return compareStructure(a[0], b[0]);
+                }
+
+                if (typeof a === "object" && a !== null && b !== null) {
+                    const aKeys = Object.keys(a);
+                    const bKeys = Object.keys(b);
+                    if (aKeys.length !== bKeys.length) return false;
+                    return aKeys.every(key => b.hasOwnProperty(key) && compareStructure(a[key], b[key]));
+                }
+
+                return true;
+            };
+
+            const match = compareStructure(left, right);
+            alert(match ? "構造は一致しています。" : "構造が一致していません。");
+        } catch {
+            alert("JSONの構文エラーがあるため検証できません。");
+        }
+    };
 
     return (
         <Layout>
@@ -192,9 +228,9 @@ const I18nEditor: React.FC = () => {
                 onDownload={handleDownload}
                 onEditExtension={handleEditExtension}
                 onReset={handleReset}
-                onExtractValues={handleExtractValues} // ✅ 追加
+                onExtractValues={handleExtractValues}
+                onCheckStructure={handleCheckStructureMatch}
             />
-
         </Layout>
     );
 };
