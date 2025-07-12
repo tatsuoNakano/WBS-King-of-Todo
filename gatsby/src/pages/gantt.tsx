@@ -188,7 +188,7 @@ const GanttChart: React.FC = () => {
                             />
                         </div>
                         <div className="col-md-2">
-                            <Button variant="info" onClick={addTask} className="w-100">
+                            <Button variant="outline-info" onClick={addTask} className="w-100">
                                 追加
                             </Button>
                         </div>

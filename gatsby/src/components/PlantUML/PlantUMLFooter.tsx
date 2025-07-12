@@ -61,25 +61,25 @@ package "Auth" {
         >
             <Container className="d-flex justify-content-center align-items-center flex-wrap gap-2">
                 <Button variant="outline-light" size="sm" onClick={() => insertSnippet(seqSnippet)}>
-                    Sequence
+                    シーケンス図
                 </Button>
                 <Button variant="outline-light" size="sm" onClick={() => insertSnippet(classSnippet)}>
-                    Class
+                    クラス図
                 </Button>
                 <Button variant="outline-light" size="sm" onClick={() => insertSnippet(packageSnippet)}>
-                    Package
+                    パッケージ図
                 </Button>
                 <Button variant="outline-light" size="sm" onClick={() => insertSnippet(noteSnippet)}>
-                    Note
+                    ノート
                 </Button>
                 <Button variant="outline-light" size="sm" onClick={downloadPu}>
-                    Download .pu
+                    DL .pu
                 </Button>
                 <Button variant="outline-light" size="sm" onClick={onDownloadPng}>
-                    Download PNG
+                    DL PNG
                 </Button>
-                <Button variant="outline-light" size="sm" onClick={onClearDiagram}>
-                    Clear
+                <Button variant="outline-danger" size="sm" onClick={onClearDiagram}>
+                    削除
                 </Button>
             </Container>
         </div>

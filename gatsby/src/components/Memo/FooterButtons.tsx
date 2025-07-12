@@ -26,10 +26,10 @@ const FooterButtons: React.FC<FooterButtonsProps> = ({
             </Button>
             <Button variant="outline-light" style={buttonStyle} onClick={() => onInsert("```\nコード\n```")}>```</Button>
             <Button variant="outline-light" style={buttonStyle} onClick={onDownload}>
-                <i className="bi bi-download" />ダウンロード
+                DL
             </Button>
-            <Button variant="outline-light" style={buttonStyle} onClick={onClear}>
-                <i className="bi bi-trash3" />削除
+            <Button variant="outline-danger" style={buttonStyle} onClick={onClear}>
+                <i className="bi bi-trash3" />リセット
             </Button>
         </ButtonGroup>
     )

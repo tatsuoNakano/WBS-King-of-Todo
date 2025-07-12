@@ -10,7 +10,7 @@ const TimetodoPage = () => (
             <Row>
                 {["daily", "weekly", "monthly", "yearly"].map((key, i) => (
                     <Col key={i} md={3}>
-                        <h4 className="text-info text-center">{key.toUpperCase()}</h4>
+                        <h4 className="text-light text-center">{key.toUpperCase()}</h4>
                         <TodoListWithMarkdownExport storageKey={`todotime-${key}`} />
                     </Col>
                 ))}

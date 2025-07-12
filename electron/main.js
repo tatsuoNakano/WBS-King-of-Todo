@@ -28,6 +28,7 @@ function createWindow() {
             width: 1000,
             height: 800,
             webPreferences: {
+                zoomFactor: 1.25,
                 contextIsolation: true,
                 enableRemoteModule: true,
                 preload: path.join(__dirname, 'preload.js'),

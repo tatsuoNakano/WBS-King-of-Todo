@@ -103,19 +103,19 @@ const WorkTimer: React.FC = () => {
 
                 <ButtonGroup className="mb-3">
                     <Button
-                        variant={mode === "work" ? "primary" : "outline-primary"}
+                        variant={mode === "work" ? "primary" : "outline-light"}
                         onClick={() => startTimer("work")}
                     >
                         作業開始
                     </Button>
                     <Button
-                        variant={mode === "break" ? "success" : "outline-success"}
+                        variant={mode === "break" ? "success" : "outline-light"}
                         onClick={() => startTimer("break")}
                     >
                         休憩開始
                     </Button>
                     <Button
-                        variant="outline-secondary"
+                        variant="outline-light"
                         onClick={() => setIsRunning(!isRunning)}
                     >
                         {isRunning ? "一時停止" : "再開"}

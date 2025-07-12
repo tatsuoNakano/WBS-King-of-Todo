@@ -105,14 +105,14 @@ const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
             <div className="d-flex gap-2 mb-3">
                 <input
                     type="text"
-                    className="form-control bg-dark text-light border-info"
+                    className="form-control bg-dark text-light border-light"
                     placeholder="新しいToDo"
                     value={input}
                     onChange={e => setInput(e.target.value)}
                     onKeyDown={e => e.key === "Enter" && addTodo()}
                 />
                 <button className="btn btn-outline-info" onClick={addTodo}>追加</button>
-                <button className="btn btn-outline-secondary" onClick={exportMarkdown}>
+                <button className="btn btn-outline-light" onClick={exportMarkdown}>
                     DL
                 </button>
             </div>

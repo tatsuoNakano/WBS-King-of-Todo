@@ -186,11 +186,11 @@ const MaindMap: React.FC = () => {
                                             </Form.Select>
                                         </Form.Group>
                                         <div className="d-flex gap-2">
-                                            <Button variant="primary" onClick={addNode}>
+                                            <Button variant="outline-light" onClick={addNode}>
                                                 追加
                                             </Button>
-                                            <Button variant="danger" onClick={reset}>
-                                                オールリセット
+                                            <Button variant="outline-danger" onClick={reset}>
+                                                <i className="bi bi-arrow-counterclockwise"></i>リセット
                                             </Button>
                                         </div>
                                     </Form>

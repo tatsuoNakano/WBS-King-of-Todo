@@ -1,5 +1,7 @@
 import React from "react";
 import { Button, Container } from "react-bootstrap";
+import "bootstrap-icons/font/bootstrap-icons.css";
+
 
 type Props = {
     onInsert: (text: string) => void;
@@ -48,7 +50,7 @@ const I18nFooter: React.FC<Props> = ({
                     拡張子を編集
                 </Button>
                 <Button variant="outline-danger" onClick={onReset}>
-                    リセット
+                    <i className="bi bi-arrow-counterclockwise"></i>リセット
                 </Button>
             </Container>
         </div>

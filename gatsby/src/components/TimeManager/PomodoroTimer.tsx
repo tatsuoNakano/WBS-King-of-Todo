@@ -181,11 +181,11 @@ const PomodoroTimer: React.FC = () => {
                 <Form.Control
                     type="number"
                     defaultValue={25}
-                    className="bg-dark text-info border-info fs-3"
+                    className="bg-dark text-light border-info fs-3"
                 />
             </Form.Group>
 
-            <h3 className="mt-3 fs-1 text-info" id="timer-display">
+            <h3 className="mt-3 fs-1 text-light" id="timer-display">
                 {formatTime(seconds)}
             </h3>
 
@@ -197,15 +197,15 @@ const PomodoroTimer: React.FC = () => {
             />
 
             <div className="d-flex gap-2">
-                <Button id="start-timer" variant="outline-info" onClick={handleStart}>
+                <Button id="start-timer" variant="outline-light" onClick={handleStart}>
                     ▶ 作業開始
                 </Button>
-                <Button id="break-timer" variant="outline-info" onClick={handleBreak}>
+                <Button id="break-timer" variant="outline-light" onClick={handleBreak}>
                     休憩
                 </Button>
                 <Button
                     id="stop-timer"
-                    variant="outline-info"
+                    variant="outline-light"
                     onClick={handlePause}
                 >
                     {isPaused ? "▶ 再開" : "一時停止"}

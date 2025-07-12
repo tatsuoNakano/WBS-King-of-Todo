@@ -32,10 +32,7 @@ const DirButton: React.FC<Props> = ({ onTemplateInsert, onReset, onCopy, onDownl
                 ))}
             </ButtonGroup>
 
-            <Button variant="outline-light" onClick={onReset}>
-                <ArrowCounterclockwise className="me-1" />
-                リセット
-            </Button>
+
             <Button variant="outline-light" onClick={onCopy}>
                 <Clipboard className="me-1" />
                 コピー
@@ -44,7 +41,10 @@ const DirButton: React.FC<Props> = ({ onTemplateInsert, onReset, onCopy, onDownl
                 <Download className="me-1" />
                 DL
             </Button>
-
+            <Button variant="outline-danger" onClick={onReset}>
+                <ArrowCounterclockwise className="me-1" />
+                リセット
+            </Button>
 
         </div>
     );

@@ -41,7 +41,7 @@ const TodoPage: React.FC = () => {
                                 placeholder={`カテゴリ ${index + 1}`}
                                 value={categoryNames[index]}
                                 onChange={(e) => handleCategoryNameChange(index, e.target.value)}
-                                className="text-center mb-2 bg-dark text-info border-info"
+                                className="text-center mb-2 bg-dark text-light border-light"
                             />
                             {/* storageKeyは不変にすることで内容が消えないようにする */}
                             <TodoListWithMarkdownExport storageKey={`todo-${index + 1}`} />

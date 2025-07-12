@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Alert } from "react-bootstrap";
-import I18nFooter from "../components/I18nJson/I18nFooter";
+import I18nFooter from "../components/I18nJson/i18nFooter";
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-json";
 import "ace-builds/src-noconflict/theme-tomorrow_night";
@@ -166,7 +166,7 @@ const I18nEditor: React.FC = () => {
             <Container fluid className="p-4 bg-dark text-light" style={{ minHeight: '100vh' }}>
                 <Row className="mb-3">
                     <Col>
-                        <h4 className="text-info">
+                        <h4 className="text-light">
                             翻訳ファイル名：{fileExtension}.json
                         </h4>
                     </Col>
