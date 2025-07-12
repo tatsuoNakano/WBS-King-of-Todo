@@ -40,6 +40,8 @@
 - [replace-in-file](https://www.npmjs.com/package/replace-in-file)
 - [json5](https://www.npmjs.com/package/json5)
 
+### デプロイ
+- Netlify
 ---
 
 ## 🛠️ 開発セットアップ
