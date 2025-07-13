@@ -6,7 +6,6 @@ type Props = {
     setText: (newText: string) => void;
     onDownloadPng: () => void;
     onClearDiagram: () => void;
-    onDownloadSvg: () => void;
 };
 
 const PlantUMLFooter: React.FC<Props> = ({ text, setText, onDownloadPng, onClearDiagram, onDownloadSvg }) => {
@@ -81,9 +80,6 @@ package "Auth" {
                 </Button>
                 <Button variant="outline-light" onClick={onDownloadPng}>
                     DL PNG
-                </Button>
-                <Button variant="outline-light"  onClick={onDownloadSvg}>
-                    DL SVG
                 </Button>
                 <Button variant="outline-danger" onClick={onClearDiagram}>
                     削除
