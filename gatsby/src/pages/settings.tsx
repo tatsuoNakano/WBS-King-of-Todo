@@ -56,7 +56,6 @@ const SettingsPage: React.FC = () => {
     return (
         <Layout>
             <Container className="py-5">
-                <h2 className="text-light text-center mb-4">設定</h2>
 
                 <Card className="bg-dark text-light border-secondary shadow-lg mb-4">
                     <Card.Body>
