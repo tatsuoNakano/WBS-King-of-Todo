@@ -11,6 +11,9 @@ const navItems = [
     { href: "/build-deploy-todo", icon: "bi-check2-square", label: "ビルド・配布" },
     { href: "/ops-maint-todo", icon: "bi-check2-square", label: "運用・保守" },
     { href: "/todo-time", icon: "bi-clock-history", label: "Time todo" },
+    { href: "/main-todo", icon: "bi-journal-check", label: "本ToDo" },
+    { href: "/learning-todo", icon: "bi-book", label: "学習ToDo" },
+    { href: "/swot-todo", icon: "bi-diagram-3-fill", label: "SWOT分析ToDo" },
 ];
 
 const TodoIndex: React.FC = () => {

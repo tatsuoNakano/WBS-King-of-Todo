@@ -10,7 +10,10 @@ const navItems = [
     { href: "/maindmap", icon: "bi-diagram-3", label: "マインドマップ" },
     { href: "/i18n", icon: "bi-globe", label: "i18nJson" },
     { href: "/plant-uml", icon: "bi-diagram-3-fill", label: "PlantUML" },
+    { href: "/mandala-chart", icon: "bi-grid-3x3-gap-fill", label: "曼荼羅チャート" },
+    { href: "/five-w-one-h", icon: "bi-question-circle", label: "5W1H" },
     { href: "/dice", icon: "bi-dice-6", label: "ダイスロール" },
+    { href: "/settings", icon: "bi-gear", label: "設定" },
 ];
 
 const IndexPage: React.FC = () => {
