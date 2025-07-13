@@ -6,9 +6,11 @@ type Props = {
     setText: (newText: string) => void;
     onDownloadPng: () => void;
     onClearDiagram: () => void;
+    onDownloadSvg: () => void;
 };
 
-const PlantUMLFooter: React.FC<Props> = ({ text, setText, onDownloadPng, onClearDiagram }) => {
+const PlantUMLFooter: React.FC<Props> = ({ text, setText, onDownloadPng, onClearDiagram, onDownloadSvg }) => {
+
     // スニペット挿入ヘルパー
     const insertSnippet = (snippet: string) => {
         const prefix = text.trim() ? text + "\n" : "";
@@ -27,6 +29,8 @@ const PlantUMLFooter: React.FC<Props> = ({ text, setText, onDownloadPng, onClear
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
     };
+
+
 
     // よく使う PlantUML スニペット例
     const seqSnippet = `@startuml
@@ -60,25 +64,28 @@ package "Auth" {
             }}
         >
             <Container className="d-flex justify-content-center align-items-center flex-wrap gap-2">
-                <Button variant="outline-light" size="sm" onClick={() => insertSnippet(seqSnippet)}>
+                <Button variant="outline-light"  onClick={() => insertSnippet(seqSnippet)}>
                     シーケンス図
                 </Button>
-                <Button variant="outline-light" size="sm" onClick={() => insertSnippet(classSnippet)}>
+                <Button variant="outline-light" onClick={() => insertSnippet(classSnippet)}>
                     クラス図
                 </Button>
-                <Button variant="outline-light" size="sm" onClick={() => insertSnippet(packageSnippet)}>
+                <Button variant="outline-light" onClick={() => insertSnippet(packageSnippet)}>
                     パッケージ図
                 </Button>
-                <Button variant="outline-light" size="sm" onClick={() => insertSnippet(noteSnippet)}>
+                <Button variant="outline-light" onClick={() => insertSnippet(noteSnippet)}>
                     ノート
                 </Button>
-                <Button variant="outline-light" size="sm" onClick={downloadPu}>
+                <Button variant="outline-light" onClick={downloadPu}>
                     DL .pu
                 </Button>
-                <Button variant="outline-light" size="sm" onClick={onDownloadPng}>
+                <Button variant="outline-light" onClick={onDownloadPng}>
                     DL PNG
                 </Button>
-                <Button variant="outline-danger" size="sm" onClick={onClearDiagram}>
+                <Button variant="outline-light"  onClick={onDownloadSvg}>
+                    DL SVG
+                </Button>
+                <Button variant="outline-danger" onClick={onClearDiagram}>
                     削除
                 </Button>
             </Container>

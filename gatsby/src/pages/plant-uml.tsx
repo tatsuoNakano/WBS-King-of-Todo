@@ -28,6 +28,14 @@ const PlantUMLPage: React.FC = () => {
         if (diagramUrl) window.open(diagramUrl, "_blank");
     };
 
+    const handleDownloadSvg = () => {
+        const svgUrl = `https://www.plantuml.com/plantuml/svg/${plantumlEncoder.encode(text)}`;
+        const link = document.createElement("a");
+        link.href = svgUrl;
+        link.download = "diagram.svg";
+        link.click();
+    };
+
     // クリア
     const handleClear = () => setText("");
 
@@ -72,8 +80,10 @@ const PlantUMLPage: React.FC = () => {
                 text={text}
                 setText={setText}
                 onDownloadPng={handleDownload}
+                onDownloadSvg={handleDownloadSvg}  // ← これを追加
                 onClearDiagram={handleClear}
             />
+
         </div>
         </Layout>
     );
