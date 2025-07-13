@@ -100,16 +100,25 @@ const MandalaChart: React.FC = () => {
                                     ? colorClasses[centerIndices.indexOf(index) % colorClasses.length]
                                     : "border-secondary"
                             }`}
-                            style={{ height: "80px" }}
+                            style={{ height: "100px" }} // 高さを拡大
                         >
                             <Card.Body className="p-1 d-flex align-items-center justify-content-center">
                                 <Form.Control
-                                    type="text"
+                                    as="textarea"
+                                    rows={3}
                                     value={value}
                                     onChange={(e) => handleChange(index, e.target.value)}
                                     className="bg-dark text-light text-center border-0 p-1"
-                                    style={{ fontSize: "0.8rem" }}
+                                    style={{
+                                        fontSize: "0.8rem",
+                                        width: "100%",
+                                        height: "100%",
+                                        resize: "none", // ユーザーによるサイズ変更を無効化
+                                        overflowY: "auto",
+                                        lineHeight: "1.2",
+                                    }}
                                 />
+
                             </Card.Body>
                         </Card>
                     ))}
