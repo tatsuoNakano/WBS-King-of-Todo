@@ -12,7 +12,7 @@ const navIconItems = [
     { href: "/i18n", icon: "bi-globe", label: "i18nJson" },
     { href: "/plant-uml", icon: "bi-diagram-3-fill", label: "PlantUML" },
     { href: "/dice", icon: "bi-dice-6", label: "ダイスロール" },
-    { href: "/todo-index", icon: "bi-check2-square", label: "ToDo" },
+    { href: "/todo-index", icon: "bi-check2-square", label: "Todo" },
     { href: "/mandala-chart", icon: "bi-grid-3x3-gap-fill", label: "曼荼羅チャート" },
     { href: "/five-w-one-h", icon: "bi-question-circle", label: "5W1H" },
     { href: "/settings", icon: "bi-gear", label: "設定" },
@@ -33,9 +33,9 @@ const navTitleItems = [
     { href: "/ops-maint-todo", icon: "bi-check2-square", label: "運用・保守 Todo" },
     { href: "/privacy-policy", icon: "bi-shield-lock", label: "プライバシーポリシー" },
     { href: "/contact-form", icon: "bi-envelope-at", label: "問い合わせ" },
-    { href: "/main-todo", icon: "bi-journal-check", label: "本ToDo" },
-    { href: "/learning-todo", icon: "bi-book", label: "学習ToDo" },
-    { href: "/swot-todo", icon: "bi-diagram-3-fill", label: "SWOT分析ToDo" },
+    { href: "/main-todo", icon: "bi-journal-check", label: "本Todo" },
+    { href: "/learning-todo", icon: "bi-book", label: "学習Todo" },
+    { href: "/swot-todo", icon: "bi-diagram-3-fill", label: "SWOT分析Todo" },
 
 
 
@@ -46,9 +46,9 @@ const navTitleItems = [
 const navDrawerItems = [
     ...navIconItems,
     { href: "/todo-time", icon: "bi-clock-history", label: "Time Todo" },
-    { href: "/main-todo", icon: "bi-journal-check", label: "本ToDo" },
-    { href: "/learning-todo", icon: "bi-book", label: "学習ToDo" },
-    { href: "/swot-todo", icon: "bi-diagram-3-fill", label: "SWOT分析ToDo" },
+    { href: "/main-todo", icon: "bi-journal-check", label: "本Todo" },
+    { href: "/learning-todo", icon: "bi-book", label: "学習Todo" },
+    { href: "/swot-todo", icon: "bi-diagram-3-fill", label: "SWOT分析Todo" },
     { href: "/requirements-todo", icon: "bi-check2-square", label: "要件定義 Todo" },
     { href: "/basic-design-todo", icon: "bi-check2-square", label: "基本設計 Todo" },
     { href: "/detailed-design-todo", icon: "bi-check2-square", label: "詳細設計 Todo" },
