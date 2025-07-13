@@ -8,7 +8,7 @@
     "dev": "concurrently \"npm run gatsby:dev\" \"npm run electron:dev\"",
     "gatsby:dev": "cd gatsby && gatsby develop -p 8001",
     "electron:dev": "wait-on http://localhost:8001 && electron -r ts-node/register electron/main.js",
-    "build": "cd gatsby && cross-env PREFIX_PATHS=true gatsby build && cd .. && node copy-public.js",
+    "build": "cd gatsby && gatsby clean && cross-env PREFIX_PATHS=true gatsby build && cd .. && node copy-public.js",
     "gatsby:build": "cd gatsby && cross-env PREFIX_PATHS=true gatsby build && cd .. && node fix-paths.js",
     "copy:public": "node copy-public.js",
     "build:app": "npm run build && npx electron-builder"
