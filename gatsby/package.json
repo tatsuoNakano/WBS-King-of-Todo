@@ -2,8 +2,8 @@
   "name": "gatsby-starter-default",
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "version": "3.0.0",
+  "author": "tastuoNakano",
   "dependencies": {
     "@loadable/component": "^5.16.7",
     "@types/react": "^19.1.8",

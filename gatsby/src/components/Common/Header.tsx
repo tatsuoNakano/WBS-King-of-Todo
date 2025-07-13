@@ -33,7 +33,7 @@ const navTitleItems = [
     { href: "/ops-maint-todo", icon: "bi-check2-square", label: "運用・保守 Todo" },
     { href: "/privacy-policy", icon: "bi-shield-lock", label: "プライバシーポリシー" },
     { href: "/contact-form", icon: "bi-envelope-at", label: "問い合わせ" },
-    { href: "/main-todo", icon: "bi-journal-check", label: "本Todo" },
+    { href: "/book-todo", icon: "bi-journal-check", label: "本Todo" },
     { href: "/learning-todo", icon: "bi-book", label: "学習Todo" },
     { href: "/swot-todo", icon: "bi-diagram-3-fill", label: "SWOT分析Todo" },
 
@@ -46,7 +46,7 @@ const navTitleItems = [
 const navDrawerItems = [
     ...navIconItems,
     { href: "/todo-time", icon: "bi-clock-history", label: "Time Todo" },
-    { href: "/main-todo", icon: "bi-journal-check", label: "本Todo" },
+    { href: "/book-todo", icon: "bi-journal-check", label: "本Todo" },
     { href: "/learning-todo", icon: "bi-book", label: "学習Todo" },
     { href: "/swot-todo", icon: "bi-diagram-3-fill", label: "SWOT分析Todo" },
     { href: "/requirements-todo", icon: "bi-check2-square", label: "要件定義 Todo" },
