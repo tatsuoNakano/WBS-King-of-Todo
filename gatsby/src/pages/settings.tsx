@@ -26,7 +26,6 @@ const SettingsPage: React.FC = () => {
 
         URL.revokeObjectURL(url);
     };
-
     const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
@@ -35,16 +34,36 @@ const SettingsPage: React.FC = () => {
         reader.onload = () => {
             try {
                 const json = JSON.parse(reader.result as string);
+
+                // ✅ 先にデータ全削除（古い壊れたキーを防ぐ）
+                if (!window.confirm("すべてのデータを上書きします。続けますか？")) return;
+                localStorage.clear();
+
+                // ✅ 各キーごとに型を見て保存方法を分岐
                 Object.keys(json).forEach((key) => {
-                    localStorage.setItem(key, JSON.stringify(json[key]));
+                    const value = json[key];
+
+                    if (typeof value === "string") {
+                        // ダブルエンコード対策：\\n → \n
+                        const fixedValue = value.replace(/\\n/g, "\n");
+                        localStorage.setItem(key, fixedValue);
+                    } else {
+                        // 非文字列（オブジェクトなど）はJSONとして保存
+                        localStorage.setItem(key, JSON.stringify(value));
+                    }
                 });
+
                 alert("インポートが完了しました。ページをリロードしてください。");
-            } catch {
+                window.location.reload(); // 任意：即座に反映されるようにする
+            } catch (error) {
+                console.error("JSON読み込みエラー:", error);
                 alert("不正なJSONファイルです。");
             }
         };
+
         reader.readAsText(file);
     };
+
 
     const handleReset = () => {
         if (window.confirm("すべてのデータを削除しますか？この操作は取り消せません。")) {
