@@ -2,33 +2,30 @@ import React, { useRef } from "react";
 import Layout from "../components/Common/Layout";
 import DirTextInput, { DirTextInputHandle } from "../components/Dir/DirTextInput";
 import DirFooter from "../components/Dir/DirFooter";
+import JSZip from "jszip";
 
 const DirPage: React.FC = () => {
     const textRef = useRef<DirTextInputHandle>(null);
 
-    // 記号挿入
     const handleInsertSymbol = (symbol: string) => {
         textRef.current?.insertAtCursor(symbol);
     };
 
-    // テンプレート挿入
     const handleTemplateInsert = () => {
         const template = `src/\n├─ components/\n│  ├─ Header.tsx\n│  └─ Footer.tsx\n├─ pages/\n│  └─ index.tsx\n└─ App.tsx\n`;
         textRef.current?.insertAtCursor(template);
     };
 
-    // リセット
     const handleReset = () => {
         textRef.current?.clearText();
     };
 
-    // クリップボードコピー
     const handleCopy = () => {
         const text = textRef.current?.getText() ?? "";
         navigator.clipboard.writeText(text);
     };
 
-    const handleDownload = () => {
+    const handleDownloadMarkdown = () => {
         const content = textRef.current?.getText() ?? "";
         const markdown = `\`\`\`ディレクトリ構成\n${content}\n\`\`\``;
         const blob = new Blob([markdown], { type: "text/plain;charset=utf-8" });
@@ -38,6 +35,28 @@ const DirPage: React.FC = () => {
         link.click();
     };
 
+    const handleZipDownload = async () => {
+        const content = textRef.current?.getText() ?? "";
+        const lines = content.split("\n");
+        const zip = new JSZip();
+
+        for (let line of lines) {
+            line = line.trim();
+            if (!line) continue;
+            const path = line.replace(/[├└│─]+/g, "").trim();
+            if (line.endsWith("/")) {
+                zip.folder(path);
+            } else {
+                zip.file(path, "");
+            }
+        }
+
+        const blob = await zip.generateAsync({ type: "blob" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "directory.zip";
+        link.click();
+    };
 
     return (
         <Layout>
@@ -49,7 +68,8 @@ const DirPage: React.FC = () => {
                 onTemplateInsert={handleTemplateInsert}
                 onReset={handleReset}
                 onCopy={handleCopy}
-                onDownload={handleDownload}
+                onDownload={handleDownloadMarkdown}
+                onZipDownload={handleZipDownload}
             />
         </Layout>
     );

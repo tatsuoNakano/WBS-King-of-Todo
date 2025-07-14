@@ -8,6 +8,7 @@ type Props = {
     onReset: () => void;
     onCopy: () => void;
     onDownload: () => void;
+    onZipDownload: () => void;
     onInsertSymbol: (symbol: string) => void;
 };
 
@@ -16,6 +17,7 @@ const DirFooter: React.FC<Props> = ({
                                         onReset,
                                         onCopy,
                                         onDownload,
+                                        onZipDownload,
                                         onInsertSymbol,
                                     }) => {
     return (
@@ -37,6 +39,7 @@ const DirFooter: React.FC<Props> = ({
                     onReset={onReset}
                     onCopy={onCopy}
                     onDownload={onDownload}
+                    onZipDownload={onZipDownload}
                     onInsertSymbol={onInsertSymbol}
                 />
             </Container>
