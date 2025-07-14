@@ -4,6 +4,7 @@ import Layout from "../components/Common/Layout";
 const navItems = [
     { href: "/gantt", icon: "bi-calendar3", label: "ガントチャート" },
     { href: "/todo-index", icon: "bi-check2-square", label: "ToDo" },
+    { href: "/web-hopper", icon: "bi-box-arrow-up-right", label: "WebHopper" },
     { href: "/dir", icon: "bi-folder", label: "ディレクトリ構成図" },
     { href: "/time-manager", icon: "bi-alarm", label: "タイムマネージャー" },
     { href: "/memo", icon: "bi-pencil-square", label: "メモ" },
@@ -12,6 +13,11 @@ const navItems = [
     { href: "/plant-uml", icon: "bi-diagram-3-fill", label: "PlantUML" },
     { href: "/mandala-chart", icon: "bi-grid-3x3-gap-fill", label: "曼荼羅チャート" },
     { href: "/five-w-one-h", icon: "bi-question-circle", label: "5W1H" },
+    { href: "/clipboard-grid", icon: "bi-grid-3x3-gap", label: "グリットコピーボード" },
+    { href: "/db-designer", icon: "bi-diagram-3", label: "DBデザイナー" },
+    { href: "/graph-generator", icon: "bi-bar-chart-line", label: "グラフジェネレーター" },
+    { href: "/license-checker", icon: "bi-shield-lock", label: "JavaScriptライセンスチェッカー" },
+    { href: "/pdca-cycles", icon: "bi-repeat", label: "PDCAs" },
     { href: "/dice", icon: "bi-dice-6", label: "ダイスロール" },
     { href: "/settings", icon: "bi-gear", label: "設定" },
 ];
