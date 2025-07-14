@@ -53,16 +53,24 @@ const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
     }, [todos, storageKey])
 
     const addTodo = () => {
-        if (!input.trim()) return
-        const task: Todo = {
-            id: `${storageKey}-${Date.now()}`,
-            title: input.trim(),
+        const items = input
+            .split(",")
+            .map(item => item.trim())
+            .filter(item => item !== "");
+
+        if (items.length === 0) return;
+
+        const newTasks: Todo[] = items.map((item, i) => ({
+            id: `${storageKey}-${Date.now()}-${i}`,
+            title: item,
             completed: false
-        }
-        const updated = [...todos, task]
-        setTodos(updated)
-        setInput("")
-    }
+        }));
+
+        const updated = [...todos, ...newTasks];
+        setTodos(updated);
+        setInput("");
+    };
+
 
     const toggleComplete = (id: string) => {
         setTodos(prev =>
