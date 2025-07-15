@@ -6,8 +6,10 @@ interface DependencyInfo {
     name: string;
     version: string;
     license: string;
-    url: string;
+    url: string;             // unpkgのURL
+    repositoryUrl?: string;  // GitHubなど
 }
+
 
 const LicenseChecker: React.FC = () => {
     const [input, setInput] = useState("");
@@ -24,11 +26,17 @@ const LicenseChecker: React.FC = () => {
             if (!res.ok) throw new Error("Fetch failed");
             const data = await res.json();
 
+            // GitHubリンクをきれいに整形（例：git+https://github.com/xxx.git → https://github.com/xxx）
+            let repoUrl = data.repository?.url || "";
+            if (repoUrl.startsWith("git+")) repoUrl = repoUrl.replace(/^git\+/, "");
+            if (repoUrl.endsWith(".git")) repoUrl = repoUrl.replace(/\.git$/, "");
+
             return {
                 name,
                 version: data.version || cleanedVersion,
                 license: data.license || "UNKNOWN",
                 url,
+                repositoryUrl: repoUrl || undefined,
             };
         } catch {
             return {
@@ -39,6 +47,7 @@ const LicenseChecker: React.FC = () => {
             };
         }
     };
+
 
     const handleCheck = async () => {
         setError(null);
@@ -137,7 +146,8 @@ const LicenseChecker: React.FC = () => {
                         <th>パッケージ名</th>
                         <th>バージョン</th>
                         <th>ライセンス</th>
-                        <th>ソース</th>
+                        <th>unpkg</th>
+                        <th>GitHub</th> {/* New */}
                     </tr>
                     </thead>
                     <tbody>
@@ -151,15 +161,30 @@ const LicenseChecker: React.FC = () => {
                                     unpkg
                                 </a>
                             </td>
+                            <td>
+                                {dep.repositoryUrl ? (
+                                    <a
+                                        href={dep.repositoryUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-info"
+                                    >
+                                        GitHub
+                                    </a>
+                                ) : (
+                                    <span className="text-muted">—</span>
+                                )}
+                            </td>
                         </tr>
                     ))}
                     </tbody>
                 </Table>
+
             )}
         </Container>
             <div className="mt-4 p-3 bg-warning text-dark rounded">
                 <h5 className="fw-bold">
-                    ⚠️ この結果はあくまで参考情報です。商用利用や公開前には必ずライセンス原文を確認し、必要に応じて法務・知財担当と相談してください。
+                    ⚠️ このツールは簡易スクリーニング目的です。最終的なライセンス確認・法的判断は必ずご自身でご確認ください。
                 </h5>
             </div>
         </Layout>
