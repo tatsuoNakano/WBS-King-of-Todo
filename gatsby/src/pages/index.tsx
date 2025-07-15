@@ -5,6 +5,7 @@ const navItems = [
     { href: "/clipboard-grid", icon: "bi-grid-3x3-gap", label: "グリットコピーボード" },
     { href: "/todo-index", icon: "bi-check2-square", label: "ToDo" },
     { href: "/web-hopper", icon: "bi-box-arrow-up-right", label: "WebHopper" },
+    { href: "/text-converter", icon: "bi-arrow-left-right", label: "テキスト変換" },
     { href: "/dir", icon: "bi-folder", label: "ディレクトリ構成図" },
     { href: "/time-manager", icon: "bi-alarm", label: "タイムマネージャー" },
     { href: "/memo", icon: "bi-pencil-square", label: "メモ" },
@@ -18,10 +19,9 @@ const navItems = [
     { href: "/graph-generator", icon: "bi-bar-chart-line", label: "グラフジェネレーター" },
     { href: "/license-checker", icon: "bi-shield-lock", label: "JavaScriptライセンスチェッカー" },
     { href: "/pdca-cycles", icon: "bi-repeat", label: "PDCAs" },
-    { href: "/text-converter", icon: "bi-arrow-left-right", label: "テキスト変換" },
     { href: "/dev-ledger", icon: "bi-journal-check", label: "開発家計簿" },
     { href: "/dice", icon: "bi-dice-6", label: "ダイスロール" },
-    { href: "/zen-mode", icon: "bi-moon", label: "zen-mode" },
+    { href: "/zen-mode", icon: "bi-moon", label: "Zen-mode" },
     { href: "/settings", icon: "bi-gear", label: "設定" },
 ];
 
