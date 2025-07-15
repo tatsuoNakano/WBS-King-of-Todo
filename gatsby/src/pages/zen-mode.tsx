@@ -4,13 +4,8 @@ import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import type { Engine, ISourceOptions } from "tsparticles-engine";
 import * as THREE from "three";
-import {Link} from "gatsby";
+import { Link } from "gatsby";
 import * as VANTA from "../utils/vanta";
-
-// Vantaがwindow.THREEを参照するため明示的に設定する
-if (typeof window !== "undefined" && !window.THREE) {
-    window.THREE = THREE;
-}
 
 const particleConfigs: Record<string, ISourceOptions> = {
     fireflies: {
@@ -46,11 +41,17 @@ const ZenParticles: React.FC = () => {
     const vantaRef = useRef<HTMLDivElement>(null);
     const vantaEffect = useRef<any>(null);
 
-
     const isVanta = activeKey in vantaOptions;
 
     const particlesInit = useCallback(async (engine: Engine) => {
         await loadSlim(engine);
+    }, []);
+
+    // ✅ SSR安全に window.THREE を設定
+    useEffect(() => {
+        if (typeof window !== "undefined" && !(window as any).THREE) {
+            (window as any).THREE = THREE;
+        }
     }, []);
 
     useEffect(() => {
@@ -65,7 +66,7 @@ const ZenParticles: React.FC = () => {
             vantaEffect.current = null;
         }
 
-        if (activeKey in vantaOptions) {
+        if (isVanta) {
             try {
                 vantaEffect.current = vantaOptions[activeKey]({
                     el: vantaRef.current,
@@ -94,12 +95,12 @@ const ZenParticles: React.FC = () => {
         };
     }, [activeKey]);
 
-    const handleExit = () => {
-        navigate("/"); // ✅ ページ遷移に変更
-    };
-
     return (
-        <Container fluid className="bg-dark text-light p-0" style={{ height: "100vh", position: "relative" }}>
+        <Container
+            fluid
+            className="bg-dark text-light p-0"
+            style={{ height: "100vh", position: "relative" }}
+        >
             <div
                 ref={vantaRef}
                 style={{
@@ -129,7 +130,9 @@ const ZenParticles: React.FC = () => {
             </div>
 
             <div style={{ position: "relative", zIndex: 1 }} className="p-4">
-              <Link className={"btn btn-outline-light"} to={"/"}>Zen-mode Exit</Link>
+                <Link className={"btn btn-outline-light"} to={"/"}>
+                    Zen-mode Exit
+                </Link>
             </div>
 
             <div
@@ -148,7 +151,7 @@ const ZenParticles: React.FC = () => {
                     onSelect={(k) => setActiveKey(k || "fireflies")}
                     className="justify-content-center "
                 >
-                    <Tab eventKey="fireflies" title="ホタル"/>
+                    <Tab eventKey="fireflies" title="ホタル" />
                     <Tab eventKey="clouds2" title="Clouds2" />
                     <Tab eventKey="net" title="Net" />
                     <Tab eventKey="rings" title="Rings" />
