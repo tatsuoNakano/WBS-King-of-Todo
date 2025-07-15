@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Container, Button, Form, Table, Spinner, Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
-import Layout from "../components/Common/Layout";
+import { Container, Button, Form, Table, Spinner, Alert } from "react-bootstrap";
 
 interface DependencyInfo {
     name: string;
@@ -9,7 +8,7 @@ interface DependencyInfo {
     url: string;
 }
 
-const LicenseChecker: React.FC = () => {
+const LicenseViewer: React.FC = () => {
     const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false);
     const [results, setResults] = useState<DependencyInfo[]>([]);
@@ -21,7 +20,7 @@ const LicenseChecker: React.FC = () => {
 
         try {
             const res = await fetch(url);
-            if (!res.ok) throw new Error("Fetch failed");
+            if (!res.ok) throw new Error("fetch failed");
             const data = await res.json();
 
             return {
@@ -62,57 +61,11 @@ const LicenseChecker: React.FC = () => {
         setLoading(false);
     };
 
-    // 色を判定する関数
-    const getLicenseColor = (license: string): string => {
-        const lower = license.toLowerCase();
-        if (
-            lower.includes("gpl") ||
-            lower.includes("agpl") ||
-            lower.includes("lgpl") ||
-            lower.includes("wtfpl") ||
-            lower === "unknown" ||
-            lower.includes("failed")
-        ) {
-            return "red";
-        }
-        if (
-            lower.includes("mit") ||
-            lower.includes("apache") ||
-            lower.includes("bsd") ||
-            lower.includes("isc")
-        ) {
-            return "lightgreen";
-        }
-        return "gold"; // 要確認ライセンス
-    };
-
-    const renderLicenseCell = (license: string) => {
-        const color = getLicenseColor(license);
-
-        if (license === "FETCH FAILED") {
-            return (
-                <OverlayTrigger
-                    placement="top"
-                    overlay={
-                        <Tooltip id="tooltip-failed">
-                            パッケージが存在しないか、unpkgに公開されていません。
-                        </Tooltip>
-                    }
-                >
-                    <span style={{ color, cursor: "help" }}>{license}</span>
-                </OverlayTrigger>
-            );
-        }
-
-        return <span style={{ color }}>{license}</span>;
-    };
-
     return (
-        <Layout>
         <Container className="py-4 text-light">
+            <h2 className="mb-4">License Viewer</h2>
 
-
-            <Form.Group controlId="jsonInput">
+            <Form.Group controlId="packageJsonInput">
                 <Form.Label>package.json の内容を貼り付け</Form.Label>
                 <Form.Control
                     as="textarea"
@@ -145,7 +98,9 @@ const LicenseChecker: React.FC = () => {
                         <tr key={dep.name}>
                             <td>{dep.name}</td>
                             <td>{dep.version}</td>
-                            <td>{renderLicenseCell(dep.license)}</td>
+                            <td style={{ color: dep.license.match(/GPL|UNKNOWN|FAILED/i) ? "red" : "lightgreen" }}>
+                                {dep.license}
+                            </td>
                             <td>
                                 <a href={dep.url} target="_blank" rel="noopener noreferrer" className="text-info">
                                     unpkg
@@ -157,13 +112,7 @@ const LicenseChecker: React.FC = () => {
                 </Table>
             )}
         </Container>
-            <div className="mt-4 p-3 bg-warning text-dark rounded">
-                <h5 className="fw-bold">
-                    ⚠️ この結果はあくまで参考情報です。商用利用や公開前には必ずライセンス原文を確認し、必要に応じて法務・知財担当と相談してください。
-                </h5>
-            </div>
-        </Layout>
     );
 };
 
-export default LicenseChecker;
+export default LicenseViewer;
