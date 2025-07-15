@@ -1,11 +1,10 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
-import { Container, Tabs, Tab, Button } from "react-bootstrap";
+import React, { useState, useCallback, useRef, useEffect, useMemo } from "react";
+import { Container, Tabs, Tab } from "react-bootstrap";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 import type { Engine, ISourceOptions } from "tsparticles-engine";
 import * as THREE from "three";
 import { Link } from "gatsby";
-import * as VANTA from "../utils/vanta";
 
 const particleConfigs: Record<string, ISourceOptions> = {
     fireflies: {
@@ -29,25 +28,31 @@ const particleConfigs: Record<string, ISourceOptions> = {
     },
 };
 
-const vantaOptions: Record<string, any> = {
-    clouds2: VANTA.CLOUDS2,
-    net: VANTA.NET,
-    rings: VANTA.RINGS,
-    halo: VANTA.HALO,
-};
-
 const ZenParticles: React.FC = () => {
     const [activeKey, setActiveKey] = useState<string>("fireflies");
     const vantaRef = useRef<HTMLDivElement>(null);
     const vantaEffect = useRef<any>(null);
 
-    const isVanta = activeKey in vantaOptions;
-
     const particlesInit = useCallback(async (engine: Engine) => {
         await loadSlim(engine);
     }, []);
 
-    // ✅ SSR安全に window.THREE を設定
+    const isClient = typeof window !== "undefined";
+
+    const vantaOptions: Record<string, any> = useMemo(() => {
+        if (!isClient) return {};
+        const VANTA = require("../utils/vanta");
+        return {
+            clouds2: VANTA.CLOUDS2,
+            net: VANTA.NET,
+            rings: VANTA.RINGS,
+            halo: VANTA.HALO,
+        };
+    }, [isClient]);
+
+    const isVanta = isClient && activeKey in vantaOptions;
+
+    // SSR中のwindow.THREE対策
     useEffect(() => {
         if (typeof window !== "undefined" && !(window as any).THREE) {
             (window as any).THREE = THREE;
@@ -55,7 +60,7 @@ const ZenParticles: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        if (!vantaRef.current) return;
+        if (!isClient || !vantaRef.current) return;
 
         if (vantaEffect.current) {
             try {
@@ -66,7 +71,7 @@ const ZenParticles: React.FC = () => {
             vantaEffect.current = null;
         }
 
-        if (isVanta) {
+        if (activeKey in vantaOptions) {
             try {
                 vantaEffect.current = vantaOptions[activeKey]({
                     el: vantaRef.current,
@@ -93,7 +98,10 @@ const ZenParticles: React.FC = () => {
                 vantaEffect.current = null;
             }
         };
-    }, [activeKey]);
+    }, [activeKey, isClient, vantaOptions]);
+
+    // SSR中は描画しない
+    if (!isClient) return null;
 
     return (
         <Container
