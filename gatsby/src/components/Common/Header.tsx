@@ -20,6 +20,9 @@ const navIconItems = [
     { href: "/license-checker", icon: "bi-shield-lock", label: "JavaScriptライセンスチェッカー" },
     { href: "/pdca-cycles", icon: "bi-repeat", label: "PDCAs" },
     { href: "/web-hopper", icon: "bi-box-arrow-up-right", label: "WebHopper" },
+    { href: "/doc-templates", icon: "bi-file-earmark-text", label: "ドキュメントテンプレート" },
+    { href: "/text-converter", icon: "bi-arrow-left-right", label: "テキスト変換" },
+    { href: "/dev-ledger", icon: "bi-journal-check", label: "開発家計簿" },
     { href: "/settings", icon: "bi-gear", label: "設定" },
 
 ];

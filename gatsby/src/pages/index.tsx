@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../components/Common/Layout";
 
 const navItems = [
-    { href: "/gantt", icon: "bi-calendar3", label: "ガントチャート" },
+    { href: "/clipboard-grid", icon: "bi-grid-3x3-gap", label: "グリットコピーボード" },
     { href: "/todo-index", icon: "bi-check2-square", label: "ToDo" },
     { href: "/web-hopper", icon: "bi-box-arrow-up-right", label: "WebHopper" },
     { href: "/dir", icon: "bi-folder", label: "ディレクトリ構成図" },
@@ -13,11 +13,14 @@ const navItems = [
     { href: "/plant-uml", icon: "bi-diagram-3-fill", label: "PlantUML" },
     { href: "/mandala-chart", icon: "bi-grid-3x3-gap-fill", label: "曼荼羅チャート" },
     { href: "/five-w-one-h", icon: "bi-question-circle", label: "5W1H" },
-    { href: "/clipboard-grid", icon: "bi-grid-3x3-gap", label: "グリットコピーボード" },
+    { href: "/gantt", icon: "bi-calendar3", label: "ガントチャート" },
     { href: "/db-designer", icon: "bi-diagram-3", label: "DBデザイナー" },
     { href: "/graph-generator", icon: "bi-bar-chart-line", label: "グラフジェネレーター" },
     { href: "/license-checker", icon: "bi-shield-lock", label: "JavaScriptライセンスチェッカー" },
     { href: "/pdca-cycles", icon: "bi-repeat", label: "PDCAs" },
+    { href: "/doc-templates", icon: "bi-file-earmark-text", label: "ドキュメントテンプレート" },
+    { href: "/text-converter", icon: "bi-arrow-left-right", label: "テキスト変換" },
+    { href: "/dev-ledger", icon: "bi-journal-check", label: "開発家計簿" },
     { href: "/dice", icon: "bi-dice-6", label: "ダイスロール" },
     { href: "/settings", icon: "bi-gear", label: "設定" },
 ];
