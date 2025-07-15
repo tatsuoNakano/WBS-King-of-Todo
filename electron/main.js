@@ -3,6 +3,8 @@ const path = require('path');
 const express = require('express');
 const fs = require('fs');
 
+const PORT = 3001; // ← ポートを一元管理（3000が使われていたら3001以上が無難）
+
 function createWindow() {
     const servePath = path.join(__dirname, '../dist');
     if (!fs.existsSync(servePath)) {
@@ -21,21 +23,21 @@ function createWindow() {
     });
 
     // サーバー起動
-    const server = serverApp.listen(3000, () => {
-        console.log('✅ ローカルサーバー起動: http://localhost:3000');
+    const server = serverApp.listen(PORT, () => {
+        console.log(`✅ ローカルサーバー起動: http://localhost:${PORT}`);
 
         const win = new BrowserWindow({
             width: 1000,
             height: 800,
             webPreferences: {
                 zoomFactor: 1.25,
-                contextIsolation: true,
-                enableRemoteModule: true,
+                contextIsolation: false,
+                enableRemoteModule: false,
                 preload: path.join(__dirname, 'preload.js'),
             },
         });
 
-        win.loadURL('http://localhost:3000');
+        win.loadURL(`http://localhost:${PORT}`);
     });
 
     server.on('error', (err) => {

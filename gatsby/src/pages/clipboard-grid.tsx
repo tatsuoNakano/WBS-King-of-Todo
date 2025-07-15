@@ -5,13 +5,30 @@ import Layout from "../components/Common/Layout";
 const STORAGE_KEY = "clipboard-grid-values";
 
 const ClipboardGrid: React.FC = () => {
-    const [values, setValues] = useState<string[]>(() => {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        return saved ? JSON.parse(saved) : Array(12).fill("");
-    });
+    const [values, setValues] = useState<string[]>(Array(12).fill(""));
 
+    // localStorageから復元（ブラウザ上のみ）
     useEffect(() => {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
+        if (typeof window !== "undefined") {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed) && parsed.length === 12) {
+                        setValues(parsed);
+                    }
+                } catch (e) {
+                    console.error("Failed to parse saved clipboard data", e);
+                }
+            }
+        }
+    }, []);
+
+    // localStorageへ保存（ブラウザ上のみ）
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
+        }
     }, [values]);
 
     const handleChange = (index: number, newValue: string) => {
@@ -21,9 +38,11 @@ const ClipboardGrid: React.FC = () => {
     };
 
     const handleCopy = (index: number) => {
-        navigator.clipboard.writeText(values[index])
-            .then(() => console.log(`Copied: ${values[index]}`))
-            .catch((err) => console.error("Copy failed", err));
+        if (typeof navigator !== "undefined" && navigator.clipboard) {
+            navigator.clipboard.writeText(values[index])
+                .then(() => console.log(`Copied: ${values[index]}`))
+                .catch((err) => console.error("Copy failed", err));
+        }
     };
 
     const handleReset = (index: number) => {
