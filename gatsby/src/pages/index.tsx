@@ -18,10 +18,10 @@ const navItems = [
     { href: "/graph-generator", icon: "bi-bar-chart-line", label: "グラフジェネレーター" },
     { href: "/license-checker", icon: "bi-shield-lock", label: "JavaScriptライセンスチェッカー" },
     { href: "/pdca-cycles", icon: "bi-repeat", label: "PDCAs" },
-    { href: "/doc-templates", icon: "bi-file-earmark-text", label: "ドキュメントテンプレート" },
     { href: "/text-converter", icon: "bi-arrow-left-right", label: "テキスト変換" },
     { href: "/dev-ledger", icon: "bi-journal-check", label: "開発家計簿" },
     { href: "/dice", icon: "bi-dice-6", label: "ダイスロール" },
+    { href: "/zen-mode", icon: "bi-moon", label: "zen-mode" },
     { href: "/settings", icon: "bi-gear", label: "設定" },
 ];
 

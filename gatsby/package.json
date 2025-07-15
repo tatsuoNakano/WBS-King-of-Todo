@@ -6,6 +6,9 @@
   "author": "tastuoNakano",
   "dependencies": {
     "@loadable/component": "^5.16.7",
+    "@tsparticles/all": "^3.8.1",
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/slim": "^3.8.1",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "ace-builds": "^1.43.1",
@@ -29,10 +32,16 @@
     "react-dom": "^18.2.0",
     "react-json-pretty": "^2.2.0",
     "react-router-dom": "^7.6.3",
+    "react-tsparticles": "^2.12.2",
     "replace-in-file": "^8.3.0",
     "sortablejs": "^1.15.6",
+    "three": "^0.178.0",
+    "tsparticles": "^2.12.0",
+    "tsparticles-engine": "^2.12.0",
+    "tsparticles-slim": "^2.12.0",
     "typescript": "^5.8.3",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "vanta": "^0.5.24"
   },
   "devDependencies": {
     "@types/sortablejs": "^1.15.8",
