@@ -1,5 +1,7 @@
 # DevKitBase
 
+  [![Sponsor](https://img.shields.io/badge/Sponsor-❤_on_GitHub-red?logo=github)](https://github.com/sponsors/tatsuoNakano)
+
 ## 🌐 Language Versions
 
 - 🇺🇸 [English (EN)](./README.md)
@@ -206,4 +208,6 @@ We are planning to support **English, Simplified Chinese**, and other languages 
 If you are interested in helping with translation or localization,  
 please reach out via [Issue](https://github.com/nakanoTatsuo/devkitbase/issues) or submit a [Pull Request](https://github.com/nakanoTatsuo/devkitbase/pulls).  
 We warmly welcome contributors who want to help grow this OSS project together.
+
+  [![Sponsor](https://img.shields.io/badge/Sponsor-❤_on_GitHub-red?logo=github)](https://github.com/sponsors/tatsuoNakano)
 
