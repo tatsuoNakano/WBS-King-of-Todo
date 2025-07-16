@@ -7,6 +7,9 @@
 - 🇯🇵 [Japanese (JA-JP)](./README.ja-JP.md)
 - 🇨🇳 [Simplified Chinese (ZH-CN)](./README.zh-CN.md)
 
+  [![Sponsor](https://img.shields.io/badge/Sponsor-❤_on_GitHub-red?logo=github)](https://github.com/sponsors/tatsuoNakano)
+
+
 ---
 
 # DevKitBase Desktop App
