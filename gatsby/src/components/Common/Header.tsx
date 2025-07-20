@@ -33,7 +33,6 @@ const navTitleItems = [
     { href: "/weekly-todo-1", icon: "bi-calendar-week", label: "(01–04) Monday – Thursday Todo" },
     { href: "/weekly-todo-2", icon: "bi-calendar-week", label: "(05–07) Friday – Sunday Todo" },
 
-
     { href: "/monthly-todo-1", icon: "bi-calendar-month", label: "(01–03) January – March Todo" },
     { href: "/monthly-todo-2", icon: "bi-calendar-month", label: "(04–06) April – June Todo" },
     { href: "/monthly-todo-3", icon: "bi-calendar-month", label: "(07–09) July – September Todo" },
