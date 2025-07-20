@@ -21,7 +21,7 @@ const FooterButtons: React.FC<FooterButtonsProps> = ({
             <Button variant="outline-light" style={buttonStyle} onClick={() => onInsert("## ")}>##</Button>
             <Button variant="outline-light" style={buttonStyle} onClick={() => onInsert("### ")}>###</Button>
             <Button variant="outline-light" style={buttonStyle} onClick={() => onInsert("* ")}>*</Button>
-            <Button variant="outline-light" style={buttonStyle} onClick={() => onInsert("[リンクテキスト](URL)")}>
+            <Button variant="outline-light" style={buttonStyle} onClick={() => onInsert("[LinkText](URL)")}>
                 <i className="bi bi-link-45deg" />
             </Button>
             <Button variant="outline-light" style={buttonStyle} onClick={() => onInsert("```\nコード\n```")}>```</Button>
@@ -29,7 +29,7 @@ const FooterButtons: React.FC<FooterButtonsProps> = ({
                 DL
             </Button>
             <Button variant="outline-danger" style={buttonStyle} onClick={onClear}>
-                <i className="bi bi-trash3" />リセット
+                <i className="bi bi-trash3" />reset
             </Button>
         </ButtonGroup>
     )

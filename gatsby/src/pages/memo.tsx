@@ -51,9 +51,9 @@ const MemoPage: React.FC = () => {
         <Layout>
             <div className="container mt-4 mb-3">
                 <Nav variant="tabs" activeKey={currentTab} onSelect={(key) => handleTabSelect(Number(key))}>
-                    <Nav.Item><Nav.Link eventKey={1}>メモ1</Nav.Link></Nav.Item>
-                    <Nav.Item><Nav.Link eventKey={2}>メモ2</Nav.Link></Nav.Item>
-                    <Nav.Item><Nav.Link eventKey={3}>メモ3</Nav.Link></Nav.Item>
+                    <Nav.Item><Nav.Link eventKey={1}>memo1</Nav.Link></Nav.Item>
+                    <Nav.Item><Nav.Link eventKey={2}>memo2</Nav.Link></Nav.Item>
+                    <Nav.Item><Nav.Link eventKey={3}>memo3</Nav.Link></Nav.Item>
                 </Nav>
             </div>
 

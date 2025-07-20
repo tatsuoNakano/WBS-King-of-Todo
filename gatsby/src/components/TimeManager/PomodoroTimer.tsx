@@ -24,26 +24,26 @@ const PomodoroTimer: React.FC = () => {
 
     const notifyUser = (label: string) => {
         if ((window as any).safeAPI) {
-            (window as any).safeAPI.notify(label, "時間になりました！");
+            (window as any).safeAPI.notify(label, "It's time!");
         }
         if ("Notification" in window) {
             if (Notification.permission === "granted") {
                 new Notification(label, {
-                    body: "時間になりました！",
+                    body: "It's time!",
                     icon: "assets/icon.png",
                 });
             } else {
                 Notification.requestPermission().then((perm) => {
                     if (perm === "granted") {
                         new Notification(label, {
-                            body: "時間になりました！",
+                            body: "It's time!",
                             icon: "assets/icon.png",
                         });
                     }
                 });
             }
         }
-        alert("時間です！");
+        alert("It's time!");
     };
 
     const saveToStorage = (data: any) => {
@@ -59,7 +59,7 @@ const PomodoroTimer: React.FC = () => {
                     clearInterval(intervalRef.current!);
                     setIsRunning(false);
                     notifyUser(notifyLabelRef.current);
-                    if (notifyLabelRef.current === "Pomodoro 完了") {
+                    if (notifyLabelRef.current === "Pomodoro completed") {
                         setCompletedSessions((c) => Math.min(c + 1, 12));
                     }
                     localStorage.removeItem(STORAGE_KEY);
@@ -95,12 +95,12 @@ const PomodoroTimer: React.FC = () => {
             (document.getElementById("work-minutes") as HTMLInputElement)?.value || "25"
         );
         if (!isNaN(minutes)) {
-            initializeTimer(minutes * 60, "Pomodoro 完了");
+            initializeTimer(minutes * 60, "Pomodoro completed");
         }
     };
 
     const handleBreak = () => {
-        initializeTimer(5 * 60, "休憩終了");
+        initializeTimer(5 * 60, "Break ends");
     };
 
     const handlePause = () => {
@@ -177,7 +177,7 @@ const PomodoroTimer: React.FC = () => {
     return (
         <div>
             <Form.Group controlId="work-minutes">
-                <Form.Label>作業時間（分）</Form.Label>
+                <Form.Label>Working time (min)</Form.Label>
                 <Form.Control
                     type="number"
                     defaultValue={25}
@@ -198,17 +198,17 @@ const PomodoroTimer: React.FC = () => {
 
             <div className="d-flex gap-2">
                 <Button id="start-timer" variant="outline-light" onClick={handleStart}>
-                    ▶ 作業開始
+                    ▶ Start of work
                 </Button>
                 <Button id="break-timer" variant="outline-light" onClick={handleBreak}>
-                    休憩
+                    break
                 </Button>
                 <Button
                     id="stop-timer"
                     variant="outline-light"
                     onClick={handlePause}
                 >
-                    {isPaused ? "▶ 再開" : "一時停止"}
+                    {isPaused ? "▶ Resume" : "Pause"}
                 </Button>
             </div>
 

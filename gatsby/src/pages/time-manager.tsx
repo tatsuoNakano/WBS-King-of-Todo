@@ -16,7 +16,7 @@ const TimeManager: React.FC = () => {
                     <Col md={6} className="mb-4">
                         <div className="bg-dark p-3 rounded shadow">
 
-                            <h4 className=" mb-3">作業タイマー</h4>
+                            <h4 className=" mb-3">work timer</h4>
                              <WorkTimer />
                         </div>
                     </Col>
@@ -24,7 +24,7 @@ const TimeManager: React.FC = () => {
                     {/* Right Column: 円グラフエリア */}
                     <Col md={6} className="mb-4">
                         <div className="bg-dark p-3 rounded shadow">
-                            <h4 className="mb-3">ポモドーロタイマー</h4>
+                            <h4 className="mb-3">Pomodoro Timer</h4>
                             <PomodoroTimer />
 
                         </div>

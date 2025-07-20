@@ -28,9 +28,9 @@ const GanttChart: React.FC = () => {
             setTasks(JSON.parse(stored));
         } else {
             setTasks([
-                { id: "1", name: "要件定義", start: "2025-07-08", end: "2025-07-10" },
-                { id: "2", name: "設計", start: "2025-07-11", end: "2025-07-14" },
-                { id: "3", name: "実装", start: "2025-07-15", end: "2025-07-20" }
+                { id: "1", name: "Requirements Definition", start: "2025-07-08", end: "2025-07-10" },
+                { id: "2", name: "Design", start: "2025-07-11", end: "2025-07-14" },
+                { id: "3", name: "Implementation", start: "2025-07-15", end: "2025-07-20" }
             ]);
         }
     }, []);

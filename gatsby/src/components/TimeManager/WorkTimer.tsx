@@ -99,26 +99,26 @@ const WorkTimer: React.FC = () => {
     return (
         <div className="d-flex justify-content-center bg-dark text-white">
             <div className="text-center py-4">
-                <h5 className="mb-3">今日の作業タイマー</h5>
+                <h5 className="mb-3">today's work timer</h5>
 
                 <ButtonGroup className="mb-3">
                     <Button
                         variant={mode === "work" ? "primary" : "outline-light"}
                         onClick={() => startTimer("work")}
                     >
-                        作業開始
+                        Start of work
                     </Button>
                     <Button
                         variant={mode === "break" ? "success" : "outline-light"}
                         onClick={() => startTimer("break")}
                     >
-                        休憩開始
+                        Break begins
                     </Button>
                     <Button
                         variant="outline-light"
                         onClick={() => setIsRunning(!isRunning)}
                     >
-                        {isRunning ? "一時停止" : "再開"}
+                        {isRunning ? "Pause" : "Resume"}
                     </Button>
                     <Button
                         variant="outline-light"
@@ -139,8 +139,8 @@ const WorkTimer: React.FC = () => {
                 </ButtonGroup>
 
                 <div className="mb-3">
-                    <p className="fs-1 mb-1">作業時間: {(dailyTime.work / 60).toFixed(1)} 分</p>
-                    <p className="fs-1">休憩時間: {(dailyTime.break / 60).toFixed(1)} 分</p>
+                    <p className="fs-1 mb-1">working time: {(dailyTime.work / 60).toFixed(1)} 分</p>
+                    <p className="fs-1">Break time: {(dailyTime.break / 60).toFixed(1)} 分</p>
                 </div>
 
                 <PieChart

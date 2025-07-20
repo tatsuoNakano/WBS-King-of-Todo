@@ -12,9 +12,9 @@ const PieChart: React.FC<Props> = ({ workSeconds, breakSeconds }) => {
     const otherSeconds = Math.max(0, totalSeconds - workSeconds - breakSeconds);
 
     const data = [
-        { label: "作業時間", value: workSeconds, color: "#0d6efd" }, // Bootstrap Blue
-        { label: "休憩時間", value: breakSeconds, color: "#20c997" }, // Bootstrap Teal
-        { label: "その他", value: otherSeconds, color: "#6c757d" },   // Bootstrap Gray
+        { label: "working time", value: workSeconds, color: "#0d6efd" }, // Bootstrap Blue
+        { label: "Break time", value: breakSeconds, color: "#20c997" }, // Bootstrap Teal
+        { label: "others", value: otherSeconds, color: "#6c757d" },   // Bootstrap Gray
     ];
 
     useEffect(() => {

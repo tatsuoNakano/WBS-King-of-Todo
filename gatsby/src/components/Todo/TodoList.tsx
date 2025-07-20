@@ -1,4 +1,3 @@
-// components/TodoListWithMarkdownExport.tsx
 import React, { useEffect, useRef, useState } from "react"
 import Sortable from "sortablejs"
 
@@ -6,17 +5,23 @@ interface Todo {
     id: string
     title: string
     completed: boolean
+    timeIndex: number
 }
 
 interface Props {
     storageKey: string
+    timeIndex: number
+    initialTitle?: string
 }
 
-const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
+const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey, timeIndex, initialTitle }) => {
     const [todos, setTodos] = useState<Todo[]>([])
     const [input, setInput] = useState("")
+    const [title, setTitle] = useState(initialTitle || "")
     const listRef = useRef<HTMLUListElement>(null)
     const todosRef = useRef<Todo[]>([])
+
+    const titleStorageKey = `${storageKey}-title`
 
     useEffect(() => {
         try {
@@ -26,6 +31,10 @@ const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
         } catch (e) {
             console.error("Failed to parse todos:", e)
         }
+
+        // タイトルも読み込む
+        const savedTitle = localStorage.getItem(titleStorageKey)
+        if (savedTitle) setTitle(savedTitle)
     }, [storageKey])
 
     useEffect(() => {
@@ -52,25 +61,29 @@ const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
         localStorage.setItem(storageKey, JSON.stringify(todos))
     }, [todos, storageKey])
 
+    useEffect(() => {
+        localStorage.setItem(titleStorageKey, title)
+    }, [title])
+
     const addTodo = () => {
         const items = input
             .split(",")
             .map(item => item.trim())
-            .filter(item => item !== "");
+            .filter(item => item !== "")
 
-        if (items.length === 0) return;
+        if (items.length === 0) return
 
         const newTasks: Todo[] = items.map((item, i) => ({
             id: `${storageKey}-${Date.now()}-${i}`,
             title: item,
-            completed: false
-        }));
+            completed: false,
+            timeIndex
+        }))
 
-        const updated = [...todos, ...newTasks];
-        setTodos(updated);
-        setInput("");
-    };
-
+        const updated = [...todos, ...newTasks]
+        setTodos(updated)
+        setInput("")
+    }
 
     const toggleComplete = (id: string) => {
         setTodos(prev =>
@@ -84,14 +97,13 @@ const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
 
     const exportMarkdown = async () => {
         const lines = todos.map(t => `${t.completed ? "- [x]" : "- [ ]"} ${t.title}`)
-        const markdown = `# ToDoリスト\n\n${lines.join("\n")}\n`
+        const markdown = `# ${title || "ToDo list"}\n\n${lines.join("\n")}\n`
         try {
             const fileAPI = (window as any).fileAPI
             if (fileAPI?.saveMarkdown) {
                 const filePath = await fileAPI.saveMarkdown(markdown)
-                if (filePath) alert(`保存しました:\n${filePath}`)
+                if (filePath) alert(`Saved:\n${filePath}`)
             } else {
-                // Fallback for browser
                 const blob = new Blob([markdown], { type: "text/markdown" })
                 const url = URL.createObjectURL(blob)
                 const a = document.createElement("a")
@@ -103,27 +115,36 @@ const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
                 URL.revokeObjectURL(url)
             }
         } catch (e) {
-            console.error("Markdown保存エラー:", e)
-            alert("Markdownの保存に失敗しました")
+            console.error("Markdown save error:", e)
+            alert("Markdown Failed to save")
         }
     }
 
     return (
         <div className="p-3 bg-dark text-light rounded">
+            <input
+                type="text"
+                className="form-control mb-3 bg-dark text-light border-light text-center"
+                placeholder="タイトルを入力"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+            />
+
             <div className="d-flex gap-2 mb-3">
                 <input
                     type="text"
                     className="form-control bg-dark text-light border-light"
-                    placeholder="新しいToDo"
+                    placeholder="New ToDo"
                     value={input}
                     onChange={e => setInput(e.target.value)}
                     onKeyDown={e => e.key === "Enter" && addTodo()}
                 />
-                <button className="btn btn-outline-info" onClick={addTodo}>追加</button>
+                <button className="btn btn-outline-info" onClick={addTodo}>add</button>
                 <button className="btn btn-outline-light" onClick={exportMarkdown}>
                     DL
                 </button>
             </div>
+
             <ul ref={listRef} className="list-group bg-dark">
                 {todos.map(task => (
                     <li
@@ -141,8 +162,8 @@ const TodoListWithMarkdownExport: React.FC<Props> = ({ storageKey }) => {
                             <span
                                 className={`ms-2 text-light ${task.completed ? "text-decoration-line-through" : ""}`}
                             >
-                                {task.title}
-                            </span>
+                {task.title}
+              </span>
                         </div>
                         <button
                             className="btn btn-sm btn-outline-danger"

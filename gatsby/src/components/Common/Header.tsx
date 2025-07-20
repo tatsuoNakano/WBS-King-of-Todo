@@ -3,47 +3,49 @@ import { Button, Offcanvas } from "react-bootstrap";
 
 // ✅ ヘッダー右のアイコンとして表示したいページのみ
 const navIconItems = [
-    { href: "/", icon: "bi-house-door", label: "ホーム" },
-    { href: "/gantt", icon: "bi-calendar3", label: "ガントチャート" },
-    { href: "/dir", icon: "bi-folder", label: "ディレクトリ構成図" },
-    { href: "/time-manager", icon: "bi-alarm", label: "タイムマネージャー" },
-    { href: "/memo", icon: "bi-pencil-square", label: "メモ" },
-    { href: "/maindmap", icon: "bi-diagram-3", label: "マインドマップ" },
-    { href: "/i18n", icon: "bi-globe", label: "i18nJson" },
-    { href: "/plant-uml", icon: "bi-diagram-3-fill", label: "PlantUML" },
-    { href: "/dice", icon: "bi-dice-6", label: "ダイスロール" },
-    { href: "/todo-index", icon: "bi-check2-square", label: "Todo" },
-    { href: "/mandala-chart", icon: "bi-grid-3x3-gap-fill", label: "曼荼羅チャート" },
-    { href: "/clipboard-grid", icon: "bi-grid-3x3-gap", label: "グリットコピーボード" },
-    { href: "/db-designer", icon: "bi-diagram-3", label: "DBデザイナー" },
-    { href: "/graph-generator", icon: "bi-bar-chart-line", label: "グラフジェネレーター" },
-    { href: "/license-checker", icon: "bi-shield-lock", label: "JavaScriptライセンスチェッカー" },
-    { href: "/pdca-cycles", icon: "bi-repeat", label: "PDCAs" },
-    { href: "/web-hopper", icon: "bi-box-arrow-up-right", label: "WebHopper" },
-    { href: "/text-converter", icon: "bi-arrow-left-right", label: "テキスト変換" },
-    { href: "/dev-ledger", icon: "bi-journal-check", label: "開発家計簿" },
-    { href: "/zen-mode", icon: "bi-moon", label: "zen-mode" },
-    { href: "/settings", icon: "bi-gear", label: "設定" },
+    { href: "/", icon: "bi-house-door", label: "index" },
+    { href: "/daily-todo-index", icon: "bi-calendar-day", label: "Daily ToDo" },
+    { href: "/weekly-todo-index", icon: "bi-calendar-week", label: "Weekly ToDo" },
+    { href: "/monthly-todo-index", icon: "bi-calendar-month", label: "Monthly ToDo" },
+    { href: "/yearly-todo-index", icon: "bi-calendar3", label: "Yearly ToDo" },
+    { href: "/todo-list", icon: "bi-card-checklist", label: "Visual ToDo Timeline" },
+    { href: "/todo", icon: "bi-card-checklist", label: "ToDo" },
+    { href: "/memo", icon: "bi-journal-text", label: "Memo" },
+    { href: "/time-manager", icon: "bi-clock-history", label: "Time Manager" },
+    { href: "/todo-graph", icon: "bi-pie-chart", label: "Graphs" },
+    { href: "/gantt", icon: "bi-kanban", label: "Gantt Chart" },
+    { href: "/calendar", icon: "bi-calendar2-range", label: "Calendar" },
+    { href: "/settings", icon: "bi-gear", label: "Settings" },
+
 
 ];
 
 // ✅ タイトル表示に使用する全ページ
 const navTitleItems = [
     ...navIconItems,
-    { href: "/todo-time", label: "ToDo Time" },
-    { href: "/todo", label: "ToDo" },
-    { href: "/requirements-todo", label: "要件定義 Todo" },
-    { href: "/basic-design-todo", icon: "bi-check2-square", label: "基本設計 Todo" },
-    { href: "/detailed-design-todo", icon: "bi-check2-square", label: "詳細設計 Todo" },
-    { href: "/dev-todo", icon: "bi-check2-square", label: "実装 Todo" },
-    { href: "/test-todo", icon: "bi-check2-square", label: "テスト Todo" },
-    { href: "/build-deploy-todo", icon: "bi-check2-square", label: "ビルド・配布 Todo" },
-    { href: "/ops-maint-todo", icon: "bi-check2-square", label: "運用・保守 Todo" },
-    { href: "/privacy-policy", icon: "bi-shield-lock", label: "プライバシーポリシー" },
-    { href: "/contact-form", icon: "bi-envelope-at", label: "問い合わせ" },
-    { href: "/book-todo", icon: "bi-journal-check", label: "本Todo" },
-    { href: "/learning-todo", icon: "bi-book", label: "学習Todo" },
-    { href: "/swot-todo", icon: "bi-diagram-3-fill", label: "SWOT分析Todo" },
+    { href: "/daily-todo-1", icon: "bi-calendar-day", label: "00:00~04:00 Todo" },
+    { href: "/daily-todo-2", icon: "bi-calendar-day", label: "04:00~08:00 Todo" },
+    { href: "/daily-todo-3", icon: "bi-calendar-day", label: "08:00~12:00 Todo" },
+    { href: "/daily-todo-4", icon: "bi-calendar-day", label: "12:00~16:00 Todo" },
+    { href: "/daily-todo-5", icon: "bi-calendar-day", label: "16:00~20:00 Todo" },
+    { href: "/daily-todo-6", icon: "bi-calendar-day", label: "20:00~24:00 Todo" },
+
+    { href: "/weekly-todo-1", icon: "bi-calendar-week", label: "(01–04) Monday – Thursday Todo" },
+    { href: "/weekly-todo-2", icon: "bi-calendar-week", label: "(05–07) Friday – Sunday Todo" },
+
+
+    { href: "/monthly-todo-1", icon: "bi-calendar-month", label: "(01–03) January – March Todo" },
+    { href: "/monthly-todo-2", icon: "bi-calendar-month", label: "(04–06) April – June Todo" },
+    { href: "/monthly-todo-3", icon: "bi-calendar-month", label: "(07–09) July – September Todo" },
+    { href: "/monthly-todo-4", icon: "bi-calendar-month", label: "(10–12) October – December Todo" },
+
+    { href: "/yearly-todo-1", icon: "bi-calendar", label: "Year 0 – Year 4 Todo" },
+    { href: "/yearly-todo-2", icon: "bi-calendar", label: "Year 4 – Year 8 Todo" },
+
+
+
+
+
 
 
 
@@ -53,19 +55,6 @@ const navTitleItems = [
 // ✅ オフキャンバスに表示する全ページ
 const navDrawerItems = [
     ...navIconItems,
-    { href: "/todo-time", icon: "bi-clock-history", label: "Time Todo" },
-    { href: "/book-todo", icon: "bi-journal-check", label: "本Todo" },
-    { href: "/learning-todo", icon: "bi-book", label: "学習Todo" },
-    { href: "/swot-todo", icon: "bi-diagram-3-fill", label: "SWOT分析Todo" },
-    { href: "/requirements-todo", icon: "bi-check2-square", label: "要件定義 Todo" },
-    { href: "/basic-design-todo", icon: "bi-check2-square", label: "基本設計 Todo" },
-    { href: "/detailed-design-todo", icon: "bi-check2-square", label: "詳細設計 Todo" },
-    { href: "/dev-todo", icon: "bi-check2-square", label: "実装 Todo" },
-    { href: "/test-todo", icon: "bi-check2-square", label: "テスト Todo" },
-    { href: "/build-deploy-todo", icon: "bi-check2-square", label: "ビルド・配布 Todo" },
-    { href: "/ops-maint-todo", icon: "bi-check2-square", label: "運用・保守 Todo" },
-    { href: "/privacy-policy", icon: "bi-shield-lock", label: "プライバシーポリシー" },
-    { href: "/contact-form", icon: "bi-envelope-at", label: "問い合わせ" },
 
 
 ];
@@ -104,7 +93,7 @@ const Header: React.FC = () => {
                     <Button variant="outline-light" onClick={handleShow}>
                         <i className="bi bi-list" />
                     </Button>
-                    <h1 className="ms-3 mb-0 fs-4">DevKitBase</h1>
+                    <h1 className="ms-3 mb-0 fs-4">WBS King of Todo</h1>
                 </div>
 
                 {/* 中央：ページタイトル */}

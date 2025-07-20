@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Card, Button, Form } from "react-bootstrap";
 import Layout from "../components/Common/Layout";
 
-const SETTINGS_KEY = "devkitbase-settings-data";
+const SETTINGS_KEY = "wbs-king-of-todo-settings-data";
 
 const SettingsPage: React.FC = () => {
     const handleDownload = () => {
@@ -21,11 +21,12 @@ const SettingsPage: React.FC = () => {
 
         const a = document.createElement("a");
         a.href = url;
-        a.download = "devkitbase_data_backup.json";
+        a.download = "wbs_king_of_todo_data_backup.json";
         a.click();
 
         URL.revokeObjectURL(url);
     };
+
     const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
@@ -35,59 +36,52 @@ const SettingsPage: React.FC = () => {
             try {
                 const json = JSON.parse(reader.result as string);
 
-                // ✅ 先にデータ全削除（古い壊れたキーを防ぐ）
-                if (!window.confirm("すべてのデータを上書きします。続けますか？")) return;
+                if (!window.confirm("All data will be overwritten. Continue?")) return;
                 localStorage.clear();
 
-                // ✅ 各キーごとに型を見て保存方法を分岐
                 Object.keys(json).forEach((key) => {
                     const value = json[key];
 
                     if (typeof value === "string") {
-                        // ダブルエンコード対策：\\n → \n
                         const fixedValue = value.replace(/\\n/g, "\n");
                         localStorage.setItem(key, fixedValue);
                     } else {
-                        // 非文字列（オブジェクトなど）はJSONとして保存
                         localStorage.setItem(key, JSON.stringify(value));
                     }
                 });
 
-                alert("インポートが完了しました。ページをリロードしてください。");
-                window.location.reload(); // 任意：即座に反映されるようにする
+                alert("Import completed. Please reload the page.");
+                window.location.reload();
             } catch (error) {
-                console.error("JSON読み込みエラー:", error);
-                alert("不正なJSONファイルです。");
+                console.error("JSON parse error:", error);
+                alert("Invalid JSON file.");
             }
         };
 
         reader.readAsText(file);
     };
 
-
     const handleReset = () => {
-        if (window.confirm("すべてのデータを削除しますか？この操作は取り消せません。")) {
+        if (window.confirm("Are you sure you want to delete all local data? This action cannot be undone.")) {
             localStorage.clear();
-            alert("ローカルストレージをリセットしました。ページをリロードしてください。");
+            alert("Local storage has been reset. Please reload the page.");
         }
     };
 
     return (
         <Layout>
             <Container className="py-5">
-
                 <Card className="bg-dark text-light border-secondary shadow-lg mb-4">
                     <Card.Body>
-                        <h4 className="mb-3">データ管理</h4>
+                        <h4 className="mb-3">Data Management</h4>
 
                         <div className="d-flex flex-column align-items-start gap-3">
-
                             <Button variant="outline-success" onClick={handleDownload}>
-                                JSONとして全てのデータを保存
+                                Export all data as JSON
                             </Button>
 
                             <Form.Label className="btn btn-outline-info m-0">
-                                保存したデータJSONを読み込む
+                                Import saved JSON data
                                 <Form.Control
                                     type="file"
                                     accept=".json"
@@ -97,23 +91,16 @@ const SettingsPage: React.FC = () => {
                             </Form.Label>
 
                             <Button variant="outline-danger" onClick={handleReset}>
-                                データをすべて削除
+                                Delete all local data
                             </Button>
-
                         </div>
 
                         <p className="mt-3 text-muted fs-6">
-                            保存されるデータには、全ToDo、メモ、チャート情報などが含まれます。
+                            Stored data includes all ToDos, memos, and chart information.
                         </p>
                     </Card.Body>
                 </Card>
 
-
-                <Card className="bg-dark text-light border-secondary shadow">
-                    <Card.Body>
-                        <h5 className="text-light">バージョン: 3.0.0</h5>
-                    </Card.Body>
-                </Card>
             </Container>
         </Layout>
     );
