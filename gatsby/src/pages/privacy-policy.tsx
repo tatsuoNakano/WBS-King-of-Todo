@@ -6,40 +6,46 @@ const PrivacyPolicy: React.FC = () => {
     return (
         <Layout>
             <Container className="py-5 text-light">
-                <h1 className="mb-4">プライバシーポリシー</h1>
+                <h1 className="mb-4">Privacy Policy</h1>
 
-                <p><strong>DevKitBase</strong>（以下、本ソフトウェア）は、MITライセンスのもとにオープンソースソフトウェア（OSS）として配布されており、完全に無料で利用可能なフリーウェアです。</p>
-
-                <h4 className="mt-4">1. アナリティクス・トラッキングについて</h4>
                 <p>
-                    本ソフトウェアは、Google Analytics、Mixpanel、その他のトラッキング・アナリティクスツールを一切使用しておりません。
-                    ユーザーの操作、環境情報、個人情報を収集・送信する仕組みは組み込まれていません。
+                    <strong>WBS King of Todo</strong> (hereinafter referred to as "this software") is distributed as open-source software (OSS) under the MIT License and is completely free to use.
                 </p>
 
-                <h4 className="mt-4">2. 個人情報の取り扱い</h4>
+                <h4 className="mt-4">1. Analytics & Tracking</h4>
                 <p>
-                    本ソフトウェアは、インストールおよび使用にあたってユーザーの個人情報を取得することはありません。
+                    This software does not use Google Analytics, Mixpanel, or any other analytics or tracking tools.
+                    There are no mechanisms implemented to collect or transmit user actions, environment data, or personal information.
                 </p>
 
-                <h4 className="mt-4">3. サポートについて</h4>
+                <h4 className="mt-4">2. Handling of Personal Information</h4>
                 <p>
-                    本ソフトウェアは、個人開発者によって提供されているものであり、公式なサポート対応は行っておりません。
-                    動作保証やバグ修正に関しても、必ずしも対応をお約束するものではありません。
+                    This software does not acquire any personal information from users during installation or use.
                 </p>
 
-                <h4 className="mt-4">4. 機能追加のご要望</h4>
+                <h4 className="mt-4">3. Support</h4>
                 <p>
-                    本ソフトウェアに対する機能追加のご要望やフィードバックがございましたら、アプリ内の「問い合わせフォーム」よりお知らせください。
-                    可能な範囲で、今後の開発の参考とさせていただきます。
+                    This software is provided by an individual developer and does not come with official support.
+                    There is no guarantee of functionality or bug fixes.
+                </p>
+                <p>
+                    If you require paid customization or support, feel free to contact us for further discussion.
                 </p>
 
-                <h4 className="mt-4">5. 免責事項</h4>
+
+                <h4 className="mt-4">4. Feature Requests</h4>
                 <p>
-                    本ソフトウェアの使用により生じたいかなる損害についても、開発者は一切の責任を負いません。
-                    すべてのユーザーは自己責任において本ソフトウェアをご利用ください。
+                    If you have any feature requests or feedback regarding this software, please contact us via the "Contact Form" within the app.
+                    We will consider them as reference for future development as much as possible.
                 </p>
 
-                <p className="mt-5 text-end">最終更新日：2025年7月13日</p>
+                <h4 className="mt-4">5. Disclaimer</h4>
+                <p>
+                    The developer assumes no responsibility for any damages arising from the use of this software.
+                    All users must use this software at their own risk.
+                </p>
+
+                <p className="mt-5 text-end">Last updated: July 13, 2025</p>
             </Container>
         </Layout>
     )

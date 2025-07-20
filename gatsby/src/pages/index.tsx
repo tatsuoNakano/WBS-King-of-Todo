@@ -9,9 +9,9 @@ const navItems = [
     { href: "/todo", icon: "bi-card-checklist", label: "ToDo" },
     { href: "/todo-list", icon: "bi-card-checklist", label: "Visual ToDo Timeline" },
     { href: "/todo-graph", icon: "bi-bar-chart-line", label: "Progress Overview" },
+    { href: "/gantt", icon: "bi-kanban", label: "Gantt Chart" },
     { href: "/memo", icon: "bi-journal-text", label: "Memo" },
     { href: "/time-manager", icon: "bi-clock-history", label: "Time Manager" },
-    { href: "/gantt", icon: "bi-kanban", label: "Gantt Chart" },
     { href: "/calendar", icon: "bi-calendar2-range", label: "Calendar" },
     { href: "/settings", icon: "bi-gear", label: "Settings" },
 

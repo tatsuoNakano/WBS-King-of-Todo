@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../components/Common/Layout";
 import FilteredTodoList from "../components/Todo/FilteredTodoList";
 import TodoProgressBar from "../components/Todo/TodoProgressBar";
+import ClearRangeButton from "../components/Todo/TodoResetBtn";
 
 const navItems = [
     { href: "/daily-todo-1", icon: "bi-check2-square", label: "00:00~04:00" },
@@ -36,6 +37,8 @@ const DailyTodoIndex: React.FC = () => {
                         ))}
                     </div>
                     <FilteredTodoList minTimeIndex={1} maxTimeIndex={24} />
+                    <ClearRangeButton minTimeIndex={1} maxTimeIndex={24} label="Clear Daily ToDos" />
+
                 </div>
 
                 {/* ホバーエフェクト用スタイル */}
@@ -50,6 +53,8 @@ const DailyTodoIndex: React.FC = () => {
       `}</style>
 
             </div>
+
+
 
 
         </Layout>

@@ -4,38 +4,39 @@ import { Container, Button, Card } from "react-bootstrap"
 
 const ContactForm: React.FC = () => {
     return (
-        <Layout title="お問い合わせ">
+        <Layout title="Contact">
             <Container className="py-5 text-light">
-                <h1 className="mb-4">お問い合わせ</h1>
+                <h1 className="mb-4">Contact</h1>
 
                 <Card bg="dark" text="light" className="mb-4">
                     <Card.Body>
                         <Card.Text>
-                            DevKitBase に関するご要望・バグ報告・感想・お仕事のご依頼などがありましたら、
-                            下記の Google フォームよりお知らせください。
+                            If you have any requests, bug reports, feedback, or business inquiries regarding <strong>DevKitBase</strong>,
+                            please contact us via the Google Form linked below.
                             <br />
-                            ※ 無償でのサポート対応は行っておりませんが、
-                            <strong>有償での個別対応・機能追加のご相談は可能です。</strong>
+                            <strong>
+                                While we do not offer free support, paid customization and feature development can be discussed.
+                            </strong>
                             <br />
-                            内容に応じて、対応可否をご連絡させていただきます。
+                            We will respond based on feasibility and the nature of your request.
                         </Card.Text>
                         <div className="mt-3">
                             <Button
                                 variant="outline-light"
-                                href="https://forms.gle/N4SaAYKm88sAiRPGA"
+                                href="https://forms.gle/xkuiWPjaW1JdnfbFA"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
                                 <i className="bi bi-box-arrow-up-right me-2" />
-                                Googleフォームで問い合わせる
+                                Contact via Google Form
                             </Button>
                         </div>
                     </Card.Body>
                 </Card>
 
                 <p className="text-muted small">
-                    お送りいただいた内容は、Googleフォーム経由で記録され、個別の返信は原則行っておりません。
-                    ご理解のほどよろしくお願いいたします。
+                    Please note that responses are not guaranteed.
+                    Submitted information will be stored via Google Forms.
                 </p>
             </Container>
         </Layout>
