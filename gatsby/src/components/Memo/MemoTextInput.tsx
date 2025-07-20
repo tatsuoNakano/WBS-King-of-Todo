@@ -64,7 +64,7 @@ const MemoTextInput = forwardRef<MemoTextInputHandle, MemoTextInputProps>(
                     <Col md={12}>
                         <Form>
                             <Form.Group controlId="memoTextArea">
-                                <Form.Label className="text-light">メモを入力</Form.Label>
+                                <Form.Label className="text-light">memo !!</Form.Label>
                                 <Form.Control
                                     ref={textAreaRef}
                                     as="textarea"

@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../components/Common/Layout";
 import FilteredTodoList from "../components/Todo/FilteredTodoList";
+import TodoProgressBar from "../components/Todo/TodoProgressBar";
 
 const navItems = [
     { href: "/daily-todo-1", icon: "bi-check2-square", label: "00:00~04:00" },
@@ -17,6 +18,7 @@ const DailyTodoIndex: React.FC = () => {
             <div className="bg-dark text-light min-vh-100 d-flex justify-content-center align-items-start pt-5">
                 <div className="container">
                     <h2 className="text-center mb-4">Daily Todos</h2>
+                    <TodoProgressBar minTimeIndex={1} maxTimeIndex={24}/>
                     <div className="row g-4 justify-content-center">
                         {navItems.map(({ href, icon, label }) => (
                             <div key={href} className="col-6 col-md-4">
@@ -29,9 +31,11 @@ const DailyTodoIndex: React.FC = () => {
                                         <span className="fw-bold">{label}</span>
                                     </div>
                                 </a>
+
                             </div>
                         ))}
                     </div>
+                    <FilteredTodoList minTimeIndex={1} maxTimeIndex={24} />
                 </div>
 
                 {/* ホバーエフェクト用スタイル */}
@@ -44,8 +48,10 @@ const DailyTodoIndex: React.FC = () => {
           box-shadow: 0 0 10px rgba(255,255,255,0.2);
         }
       `}</style>
+
             </div>
-            <FilteredTodoList minTimeIndex={1} maxTimeIndex={24} />
+
+
         </Layout>
     );
 };

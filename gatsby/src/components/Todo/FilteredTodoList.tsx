@@ -92,7 +92,7 @@ const FilteredTodoList: React.FC<Props> = ({ minTimeIndex, maxTimeIndex }) => {
     }, [minTimeIndex, maxTimeIndex])
 
     return (
-        <ul className="list-group bg-dark">
+        <ul className="list-group bg-dark mt-5">
             {todos.map((todo) => {
                 const color = getGradientColor(todo.timeIndex)
                 const label = getCategoryLabel(todo.timeIndex)

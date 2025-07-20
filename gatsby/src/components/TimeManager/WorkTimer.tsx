@@ -134,13 +134,13 @@ const WorkTimer: React.FC = () => {
                             }));
                         }}
                     >
-                        停止
+                        stop
                     </Button>
                 </ButtonGroup>
 
                 <div className="mb-3">
-                    <p className="fs-1 mb-1">working time: {(dailyTime.work / 60).toFixed(1)} 分</p>
-                    <p className="fs-1">Break time: {(dailyTime.break / 60).toFixed(1)} 分</p>
+                    <p className="fs-1 mb-1">working time: {(dailyTime.work / 60).toFixed(1)} minute</p>
+                    <p className="fs-1">Break time: {(dailyTime.break / 60).toFixed(1)} minute</p>
                 </div>
 
                 <PieChart
